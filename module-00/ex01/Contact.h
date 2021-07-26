@@ -12,6 +12,14 @@ static std::string &stringCapitalize(std::string &s)
 	return (s);
 }
 
+static std::string &markAsEmpty(std::string &s)
+{
+	if (s.find_first_not_of(' ') == std::string::npos) {
+		s = "(empty)";
+	}
+	return s;
+}
+
 class Contact {
 	std::string firstName, lastName, nickname, phoneNumber, darkestSecret;
 
@@ -19,8 +27,9 @@ class Contact {
 		Contact(): firstName(""), lastName(""), nickname(""), phoneNumber(""), darkestSecret("") {};
 		Contact(std::string _firstName, std::string _lastName, std::string _nickname,
 				std::string _phoneNumber, std::string _darkestSecret):
-				firstName(_firstName), lastName(stringCapitalize(_lastName)), nickname(_nickname),
-				phoneNumber(_phoneNumber), darkestSecret(_darkestSecret) {};
+				firstName(markAsEmpty(_firstName)), lastName(markAsEmpty(stringCapitalize(_lastName))),
+				nickname(markAsEmpty(_nickname)), phoneNumber(markAsEmpty(_phoneNumber)), 
+				darkestSecret(markAsEmpty(_darkestSecret)) {};
 
 		std::string const &getFirstName() const { return firstName; };
 		std::string const &getLastName() const { return lastName; };
@@ -35,9 +44,12 @@ class Contact {
 
 inline std::ostream& Contact::print(std::ostream &os) const
 { 
-	return os << lastName << " " << firstName << " a.k.a \"" << nickname << "\"\n"
-		<< "Phone: " << phoneNumber << "\n" << "\033[0;31mDarkest secret\033[0m: "
-		<< darkestSecret;
+	return os << "first name: " << firstName
+			<< "\nlast name: " << lastName
+			<< "\nnickname: " << nickname
+			<< "\nphone: " << phoneNumber
+			<< "\ndarkest secret: " << darkestSecret
+			<< std::flush;
 }
 
 std::ostream& operator<<(std::ostream &os, Contact const &contact)

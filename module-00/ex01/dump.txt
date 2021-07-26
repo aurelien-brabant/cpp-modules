@@ -1,0 +1,47 @@
+Luck
+Smith
+(empty)
++33 7 42 23 45 22
+Thinkpad weirdo and pedantic Linux-tuber
+---
+Aurelien
+Brabant
+abrabant
++33 7 52 64 35 43
+Likes C++ more than expected
+---
+John
+Doe
+Johnny
+(empty)
+Always used as a placeholder :(
+---
+Sarah
+Santiago
+(empty)
++33 1 67 01 83 07
+Issez hauttttttttttttttttttttttttt Santia(n)o
+---
+Berry
+Kong
+King of Berries
++33 2 29 07 46 20
+Loves to eat berries
+---
+Alvin
+Seville
+Chipmunk
++33 1 52 34 67 23
+Singing is his passion
+---
+Thomas
+Smith
+Tomtom
++33 3 87 40 49 58
+Thinks that Smith is a generic but pretty cool last name
+---
+Linus
+Torvalds
+Linux
++33 11 11 11 11 11
+Well basically he is the boss
