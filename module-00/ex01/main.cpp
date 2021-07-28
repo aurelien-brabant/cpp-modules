@@ -2,6 +2,7 @@
 #include <cctype>
 #include <stdexcept>
 #include <fstream>
+#include <iomanip>
 
 #include "Contact.h"
 #include "PhoneBook.h"
@@ -74,7 +75,7 @@ void	commandSave(PhoneBook &pb)
 
 	 std::cout << "file path> ";
 	 if (getline(std::cin, filepath)) {
-		std::ofstream ofs(filepath);
+		std::ofstream ofs(filepath.c_str());
 		if (ofs) {
 			for (PhoneBook::size_type i = 0; i != pb.size(); ++i) {
 				Contact const &cp = *pb.getContact(i);
@@ -96,7 +97,7 @@ void	commandLoad(PhoneBook &pb)
 
 	 std::cout << "file path> ";
 	 if (getline(std::cin, filepath)) {
-		std::ifstream ifs(filepath);
+		std::ifstream ifs(filepath.c_str());
 		if (ifs) {
 			pb.clear();
 			while (ifs) {
