@@ -10,6 +10,7 @@ void	commandSearch(PhoneBook &pb);
 void	commandSave(PhoneBook &pb);
 void	commandLoad(PhoneBook &pb);
 void	commandExit(PhoneBook &pb);
+void	commandClear(PhoneBook &pb);
 
 struct CommandInfo
 {

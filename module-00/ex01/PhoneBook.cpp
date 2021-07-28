@@ -1,9 +1,15 @@
 #include "PhoneBook.h"
 #include <sstream>
-# include <iostream>
-# include <iomanip>
-# include <stdexcept>
-# include <sstream>
+#include <iostream>
+#include <iomanip>
+#include <stdexcept>
+#include <sstream>
+
+PhoneBook::PhoneBook(): _contacts(), _arraySize(0) {};
+
+PhoneBook::size_type PhoneBook::size(void) const { return _arraySize; };
+
+PhoneBook &PhoneBook::clear() { _arraySize = 0; return *this; };
 
 PhoneBook &PhoneBook::addContact(Contact const &contact)
 {
@@ -44,7 +50,7 @@ PhoneBook &PhoneBook::removeContact(size_type index)
 
 const PhoneBook &PhoneBook::list() const
 {
-	std::cout << std::setfill('-') << std::setw(54) << "\n" << std::setfill(' ');
+	std::cout << std::right << std::setfill('-') << std::setw(54) << "\n" << std::setfill(' ');
 	std::cout << "| " << std::setw(10) << "Index" << " | " << std::setw(10) << "First name" 
 		<< " | " << std::setw(10) << "Last name" << " | " << std::setw(10) << "Nickname" << " |\n";
 

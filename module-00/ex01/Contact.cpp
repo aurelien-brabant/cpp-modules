@@ -1,5 +1,25 @@
 #include "Contact.h"
 
+Contact::Contact(void) {};
+
+Contact::Contact(std::string firstName, std::string lastName, std::string nickname,
+					std::string phone, std::string darkestSecret):
+					_firstName(_markAsEmpty(firstName)), _lastName(_markAsEmpty(_stringCapitalize(lastName))),
+					_nickname(_markAsEmpty(nickname)), _phone(_markAsEmpty(phone)), 
+					_darkestSecret(_markAsEmpty(darkestSecret)) {};
+
+// getters
+
+std::string const& Contact::getFirstName(void) const { return _firstName; };
+
+std::string const& Contact::getLastName(void) const { return _lastName; };
+
+std::string const& Contact::getNickname(void) const { return _nickname; };
+
+std::string const& Contact::getPhone(void) const { return _phone; };
+
+std::string const& Contact::getDarkestSecret(void) const { return _darkestSecret; };
+
 // Defined outside the class to improve readability
 
 inline std::ostream &Contact::print(std::ostream &os) const

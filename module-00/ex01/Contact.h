@@ -13,18 +13,15 @@ class Contact {
 
 	public:
 		// default constructor is needed for array automatic initialization
-		Contact() {};
+		Contact(void);
 		Contact(std::string firstName, std::string lastName, std::string nickname,
-				std::string phone, std::string darkestSecret):
-				_firstName(_markAsEmpty(firstName)), _lastName(_markAsEmpty(_stringCapitalize(lastName))),
-				_nickname(_markAsEmpty(nickname)), _phone(_markAsEmpty(phone)), 
-				_darkestSecret(_markAsEmpty(darkestSecret)) {};
+				std::string phone, std::string darkestSecret);
 
-		std::string const &getFirstName() const { return _firstName; };
-		std::string const &getLastName() const { return _lastName; };
-		std::string const &getNickname() const { return _nickname; };
-		std::string const &getPhone() const { return _phone; };
-		std::string const &getDarkestSecret() const { return _darkestSecret; };
+		std::string const &getFirstName() const;
+		std::string const &getLastName() const;
+		std::string const &getNickname() const;
+		std::string const &getPhone() const;
+		std::string const &getDarkestSecret() const;
 
 		std::ostream &print(std::ostream &os = std::cout) const;
 };
