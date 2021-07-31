@@ -2,9 +2,10 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include "replace.h"
 
 using std::ofstream; using std::ifstream;
-using std::cerr; using std::endl; using std::getline;
+using std::cerr; using std::endl; using std::getline; using std::cout;
 using std::string;
 using std::nothrow;
 
@@ -34,21 +35,26 @@ int main(int argc, char **argv)
 {
 	if (argc != 4) {
 		cerr << "Usage: replace <file> <replaced char sequence> <replacement char sequence>" << endl;
-		return 1;
+		return ERROR_BAD_USAGE;
+	}
+
+	if (!argv[1][0] || !argv[2][0] || !argv[3][0]) {
+		cerr << "Can't process an empty string" << endl;
+		return ERROR_EMPTY_STRING;
 	}
 
 	ifstream ifs(argv[1]);
 	
 	if (!ifs) {
 		cerr << "Could not open file \"" << argv[1] << "\" for reading" << endl;
-		return 2;
+		return ERROR_FSTREAM;
 	}
 
 	const char *replacedFilename = buildReplacedFilename(argv[1]);
 
 	if (!replacedFilename) {
 		cerr << "Could not allocate replaceFilename" << endl;
-		return 3;
+		return ERROR_BAD_ALLOC;
 	}
 
 	ofstream ofs(replacedFilename);
@@ -56,14 +62,14 @@ int main(int argc, char **argv)
 
 	if (!ofs) {
 		cerr << "Could not open replaced file for writing" << endl;
-		return 2;
+		return ERROR_FSTREAM;
 	}
 
 	// Process each line individually, manually replacing each occurence of the first
 	// string by the second one. It is done in a smart (I think) fashion to avoid
 	// write operation as much as possible.
 	
-	size_t s1Len = strlen(argv[2]);
+	size_t s1Len = strlen(argv[2]), count = 0;
 
 	string line;
 	while (getline(ifs, line)) {
@@ -71,6 +77,7 @@ int main(int argc, char **argv)
 			size_t foundAt = line.find(argv[2], i);
 
 			if (foundAt != string::npos) {
+				++count;
 				if (foundAt > i) {
 					string sub = line.substr(i, foundAt - i);
 					ofs << sub;
@@ -84,8 +91,12 @@ int main(int argc, char **argv)
 				break ;
 			}
 		}
-		ofs << "\n";
+		if (!ifs.eof()) {
+			ofs << "\n";
+		}
 	}
+
+	cout << count << endl;
 	
 	return 0;
 }
