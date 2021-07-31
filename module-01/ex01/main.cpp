@@ -28,19 +28,17 @@ int main(int argc, char **argv)
 		return 2;
 	}
 
-	Zombie *zbHorde;
-
 	try {
-		zbHorde = zombieHorde(N, argv[2]);
+		Zombie *zbHorde = zombieHorde(N, argv[2]);
+
+		for (int i = 0; i != N; ++i) {
+			zbHorde[i].announce();
+		}
+
+		delete[] zbHorde;
 	} catch(bad_alloc e) {
-		cerr << e.what() << endl;
+		cerr << "Dynamic allocated failed, bad_alloc exception caught" << endl;
 	}
-
-	for (int i = 0; i != N; ++i) {
-		zbHorde[i].announce();
-	}
-
-	delete[] zbHorde;
 
 	return 0;
 }

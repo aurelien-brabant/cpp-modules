@@ -1,15 +1,21 @@
+#include <stdexcept>
+#include <iostream>
 #include "Zombie.hpp"
+
+using std::bad_alloc;
+using std::cerr; using std::endl;
 
 int main(void)
 {
-	Zombie *zbLoc = newZombie("heap zombie");
+	try {
+		Zombie *zbLoc = newZombie("heap zombie");
+		zbLoc->announce();
+		// release memory allocated for the Zombie pointed by zbLoc
+		delete zbLoc;
+	} catch(bad_alloc alloc) {
+		cerr << "Dynamic allocation failed, caught bad_alloc exception" << endl;	
+	}
 	
-	zbLoc->announce();
-
-	// Because zbLoc points to a dynamically allocated Zombie object, we need to release this memory at some point.
-	// we do so by using the delete keyword that is responsible for freeing memory which is allocated dynamically.
-	delete zbLoc;
-
 	randomChump("stack zombie");
 	
 	return 0;
