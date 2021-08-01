@@ -1,4 +1,4 @@
-TARGET	:= karen
+TARGET	:= karenFilter
 SRCS	:= main.cpp Karen.cpp
 HEADERS	:= Karen.hpp
 
