@@ -2,38 +2,48 @@
 #include <cmath>
 #include "Fixed.hpp"
 
+/* REFERENCES:
+** https://embeddedartistry.com/blog/2018/07/12/simple-fixed-point-conversion-in-c
+** https://inst.eecs.berkeley.edu//~cs61c/sp06/handout/fixedpt.html
+*/
+
 using std::cout; using std::endl;
+
+/* - CONSTRUCTORS - */
 
 Fixed::Fixed(void): _fixed(0)
 {
 	cout << "Default constructor called" << endl;
 }
 
-Fixed::Fixed(Fixed &f)
+Fixed::Fixed(Fixed const &f)
 {
 	cout << "Copy constructor called" << endl;
 	*this = f;
 }
 
-
 Fixed::Fixed(int const fixedVal)
 {
-	// set the fractional part to zero, and set the integer part to fixedVal
+	cout << "Int constructor called" << endl;
 	_fixed = fixedVal << _fbNb;
 }
 
-
 Fixed::Fixed(float const fixedVal)
 {
-	// get only the mantissa part that matters, discarding extra precision.
-	unsigned mantissaPart = ((unsigned) fixedVal << 9) >> (sizeof (_fixed) * 8 - _fbNb); 
-
-	_fixed = ((int)roundf(fixedVal) << _fbNb) | mantissaPart;
+	cout << "Float constructor called" << endl;
+	_fixed = roundf(fixedVal * (1 << _fbNb));
 }
 
-int	Fixed::toInt(void)
+/* - FIXED POINT CONVERSION - */
+
+int	Fixed::toInt(void) const
 {
 	return _fixed >> 8;
+}
+
+float Fixed::toFloat(void) const
+{
+	return ((float) _fixed / (float)(1 << _fbNb));
 }
 
 Fixed::~Fixed(void)
@@ -43,7 +53,6 @@ Fixed::~Fixed(void)
 
 void Fixed::setRawBits(int const raw)
 {
-
    	_fixed = raw;
 }
 
@@ -54,7 +63,9 @@ int Fixed::getRawBits(void) const
 	return _fixed;
 }
 
-Fixed	&Fixed::operator=(Fixed &rhs)
+/* - OPERATORS - */
+
+Fixed	&Fixed::operator=(Fixed const &rhs)
 {
 	cout << "Assignation operator called" << endl;
 
@@ -65,4 +76,11 @@ Fixed	&Fixed::operator=(Fixed &rhs)
 
 	// lhs is returned
 	return *this;
+}
+
+std::ostream	&operator<<(std::ostream &lhs, Fixed const &rhs)
+{
+	lhs << rhs.toFloat();
+
+	return lhs;
 }
