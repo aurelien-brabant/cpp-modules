@@ -1,14 +1,14 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 # include <iostream>
+# include <stdint.h>
 
 // TODO: overload assignation operator
 
 class Fixed {
 	private:
 		static const unsigned _fbNb = 8;
-		static float scaleFactor;
-		int _fixed;
+		int32_t _fixed;
 	
 	public:
 		Fixed(void);
@@ -16,6 +16,13 @@ class Fixed {
 		Fixed(int const);
 		Fixed(float const);
 		~Fixed(void);
+
+		static Fixed &min(Fixed &f1, Fixed &f2);
+		static Fixed const &min(Fixed const &f1, Fixed const &f2);
+		static Fixed &max(Fixed &f1, Fixed &f2);
+		static Fixed const &max(Fixed const &f1, Fixed const &f2);
+
+		static unsigned getNbOfFractionalBits(void);
 
 		int		toInt(void) const;
 		float	toFloat(void) const;
