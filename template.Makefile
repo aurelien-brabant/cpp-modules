@@ -8,7 +8,7 @@
 # - HEADERS, which must hold the list of .{h, hpp} files the program depends on.
 
 CC			:= clang++
-CPP_FLAGS	:= -Wall -Wextra -Werror -std=c++98
+CPP_FLAGS	= -Wall -Wextra -Werror -std=c++98
 LD			:= $(CC)
 
 OBJS		:= $(SRCS:%.cpp=%.o)
@@ -20,8 +20,15 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(LD) $(OBJS) -o $(TARGET)
 
+ifdef DEBUG
+%.o: %.cpp $(HEADERS)
+	$(CC) -c $(CPP_FLAGS) -D DEBUG $< -o $@
+endif
+
+ifndef DEBUG
 %.o: %.cpp $(HEADERS)
 	$(CC) -c $(CPP_FLAGS) $< -o $@
+endif
 
 clean:
 	$(RM) $(OBJS)
