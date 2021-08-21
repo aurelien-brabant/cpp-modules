@@ -38,12 +38,12 @@ Fixed::Fixed(float const fixedVal)
 
 int	Fixed::toInt(void) const
 {
-	return _fixed >> 8;
+	return roundf(toFloat());
 }
 
 float Fixed::toFloat(void) const
 {
-	return ((float) _fixed / (float)(1 << _fbNb));
+	return (float) _fixed / (1 << _fbNb);
 }
 
 Fixed::~Fixed(void)

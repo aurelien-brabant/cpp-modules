@@ -20,7 +20,6 @@ Fixed::Fixed(void): _fixed(0)
 Fixed::Fixed(Fixed const &f)
 {
 	printDebug("Copy constructor called");
-
 	*this = f;
 }
 
@@ -38,7 +37,7 @@ Fixed::Fixed(float const fixedVal)
 
 int Fixed::toInt(void) const
 {
-	return _fixed >> 8;
+	return roundf(toFloat());
 }
 
 float Fixed::toFloat(void) const
