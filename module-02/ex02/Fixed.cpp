@@ -10,36 +10,29 @@
 ** https://spin.atomicobject.com/2012/03/15/simple-fixed-point-math
 */
 
-using std::cout; using std::endl;
+const std::ostream &printDebug(std::string const &msg);
 
 Fixed::Fixed(void): _fixed(0)
 {
-	#ifdef DEBUG
-		cout << "Default constructor called" << endl;
-	#endif
+	printDebug("Default constructor called");
 }
 
 Fixed::Fixed(Fixed const &f)
 {
-	#ifdef DEBUG
-		cout << "Copy constructor called" << endl;
-	#endif
+	printDebug("Copy constructor called");
+
 	*this = f;
 }
 
 Fixed::Fixed(int const fixedVal)
 {
-	#ifdef DEBUG
-		cout << "Int constructor called" << endl;
-	#endif
+	printDebug("Int constructor called");
 	_fixed = fixedVal << _fbNb;
 }
 
 Fixed::Fixed(float const fixedVal)
 {
-	#ifdef DEBUG
-		cout << "Float constructor called" << endl;
-	#endif
+	printDebug("Float constructor called");
 	_fixed = roundf(fixedVal * (1 << Fixed::getNbOfFractionalBits()));
 }
 
@@ -55,9 +48,7 @@ float Fixed::toFloat(void) const
 
 Fixed::~Fixed(void)
 {
-	#ifdef DEBUG
-		cout << "Destructor called" << endl;
-	#endif
+	printDebug("Destructor called"); 
 }
 
 void Fixed::setRawBits(int const raw)
@@ -67,18 +58,15 @@ void Fixed::setRawBits(int const raw)
 
 int Fixed::getRawBits(void) const
 {
-	#ifdef DEBUG
-		cout << "getRawBits member function called" << endl;
-	#endif
+	printDebug("getRawBits member function called");
 
 	return _fixed;
 }
 
 Fixed &Fixed::operator=(Fixed const &rhs)
 {
-	#ifdef DEBUG
-		cout << "Assignation operator called" << endl;
-	#endif
+	
+	printDebug("Assignation operator called");
 
 	// guard self assignment
 	if (this == &rhs) return *this;
@@ -95,7 +83,6 @@ std::ostream &operator<<(std::ostream &lhs, Fixed const &rhs)
 
 	return lhs;
 }
-
 
 bool operator==(Fixed const &lhs, Fixed const &rhs)
 {
@@ -202,22 +189,30 @@ unsigned Fixed::getNbOfFractionalBits(void)
 
 Fixed const &Fixed::min(Fixed const &f1, Fixed const &f2)
 {
+	printDebug("const min static member called");
+
 	if (f1 < f2) return f1;
 	return f2;
 }
 
 Fixed &Fixed::min(Fixed  &f1, Fixed  &f2)
 {
-	return const_cast<Fixed &>(Fixed::min(const_cast<Fixed const &>(f1), const_cast<Fixed const &>(f2)));
+	printDebug("non-const min static member called");
+
+	return const_cast<Fixed &>(Fixed::min(static_cast<Fixed const &>(f1), f2));
 }
 
 Fixed const &Fixed::max(Fixed const &f1, Fixed const &f2)
 {
+	printDebug("const max static member called");
+
 	if (f1 > f2) return f1;
 	return f2;
 }
 
-Fixed  &Fixed::max(Fixed  &f1, Fixed  &f2)
+Fixed  &Fixed::max(Fixed &f1, Fixed  &f2)
 {
-	return const_cast<Fixed &>(Fixed::max(const_cast<Fixed const &>(f1), const_cast<Fixed const &>(f2)));
+	printDebug("non-const max static member called");
+
+	return const_cast<Fixed &>(Fixed::max(static_cast<Fixed const &>(f1), f2));
 }

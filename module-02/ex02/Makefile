@@ -1,7 +1,5 @@
-SRCS	:= Fixed.cpp main.cpp
+SRCS	:= Fixed.cpp main.cpp debug.cpp
 HEADERS	:= Fixed.hpp
 TARGET	:= fixed
 
 include ../../template.Makefile
-
-#CPP_FLAGS	= -Wall -Wextra -Werror -D DEBUG
