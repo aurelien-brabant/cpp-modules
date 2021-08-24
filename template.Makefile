@@ -7,7 +7,8 @@
 # - SRCS, which must hold the list of .cpp files that are needed to compile the program. 
 # - HEADERS, which must hold the list of .{h, hpp} files the program depends on.
 
-CC			:= clang++
+CC			= clang++
+
 CPP_FLAGS	= -Wall -Wextra -Werror -std=c++98
 LD			:= $(CC)
 
