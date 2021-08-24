@@ -3,8 +3,9 @@
 # include <string>
 
 class ClapTrap {
-	std::string _name;
-	unsigned _hit_points, _energy_points, _attack_damage;
+	protected:
+		std::string _name;
+		unsigned _hit_points, _energy_points, _attack_damage;
 
 	public:
 		ClapTrap(std::string const& name = "0x00");
@@ -16,11 +17,11 @@ class ClapTrap {
 		std::string const	&getName(void) const;
 		void				setName(std::string const &name);	
 
-		~ClapTrap(void);
+		virtual	~ClapTrap(void);
 
-		void	attack(std::string const& target) const;
-		void	takeDamage(unsigned int amount) const;
-		void	beRepaired(unsigned int amount) const;
+		virtual void	attack(std::string const& target) const;
+		void			takeDamage(unsigned int amount) const;
+		void			beRepaired(unsigned int amount) const;
 };
 
 #endif

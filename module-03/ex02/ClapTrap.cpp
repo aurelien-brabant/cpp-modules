@@ -6,19 +6,20 @@ using std::cout; using std::endl;
 
 ClapTrap::ClapTrap(string const &name): _name(name), _hit_points(10), _energy_points(10), _attack_damage(0)
 {
-	cout << "[\033[1;32mCTOR\033[0m] ClapTrap \"" << _name << "\" created" << endl;
+	cout << "[\033[1;32mCTOR\033[0m] \033[1;34mClap\033[0mTrap \"" << _name << "\" created" << endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap const& cp)
 {
 	*this = cp;
+
 	cout << "[\033[1;32mCTOR\033[0m] (COPY) \033[1;34mClap\033[0mTrap \"" << _name << "\" created" << endl;
 };
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &cp)
 {
 	cout << "[\033[0;33moperator=\033[0m] assigned \"" << cp.getName() << "\" to \"" << _name << "\"" << endl;
-	
+
 	if (this != &cp) {
 		_name = cp._name;
 		_hit_points = cp._hit_points;
@@ -35,7 +36,7 @@ std::string const&	ClapTrap::getName(void) const { return _name; }
 
 ClapTrap::~ClapTrap(void)
 {
-	cout << "[\033[1;31mDTOR\033[0m] ClapTrap \"" << _name << "\" destroyed" << endl;
+	cout << "[\033[1;31mDTOR\033[0m] \033[1;34mClap\033[0mTrap \"" << _name << "\" destroyed" << endl;
 }
 
 void	ClapTrap::attack(std::string const& target) const
