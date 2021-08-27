@@ -2,9 +2,14 @@
 # define SCAVTRAP_H
 # include "ClapTrap.hpp"
 
-class ScavTrap: public ClapTrap {
+/* About virtual inheritance: https://en.wikipedia.org/wiki/Virtual_inheritance */
+
+class ScavTrap: virtual public ClapTrap {
 	public:
 		ScavTrap(std::string const& name = "0x00");
+		ScavTrap(ScavTrap const& ft);
+
+		ScavTrap &operator=(ScavTrap const &ft);
 
 		~ScavTrap(void);
 		
