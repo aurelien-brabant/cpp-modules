@@ -38,6 +38,7 @@ int main(void)
 	{
 		ScavTrap dumbScavTrap("Dumb ScavTrap");
 		ScavTrap copiedScavTrap = ScavTrap(dumbScavTrap);
+		copiedScavTrap.attack("Random scavtrap");
 	}
 
 	return 0;
