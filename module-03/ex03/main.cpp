@@ -8,7 +8,7 @@ using std::cout; using std::endl;
 
 int main(void)
 {
-	#ifdef DEBUG /* ex01 TEST CODE */
+	#ifdef DEBUG /* ex02 TEST CODE */
 		{
 			// test default CTOR
 			ClapTrap anonymousClapTrap;
@@ -41,24 +41,24 @@ int main(void)
 			ScavTrap copiedScavTrap = ScavTrap(dumbScavTrap);
 		}
 
-	{
-		FragTrap ft;
-		ft.highFiveGuys();
-	}
+		{
+			FragTrap ft;
+			ft.highFiveGuys();
+		}
 
-	{
-		cout << "\033[0;35mTesting copy constructor and assignment operator\033[0m" << endl;
+		{
+			cout << "\033[0;35mTesting copy constructor and assignment operator\033[0m" << endl;
 
-		FragTrap f1("FG-1"), f2 = FragTrap(f1);
+			FragTrap f1("FG-1"), f2 = FragTrap(f1);
 
-		f2.setName("FG-2");
-		
-		/* should use ClapTrap's version of attack since FragTrap is not required to define its version */
-		f1.attack(f2.getName());
+			f2.setName("FG-2");
+			
+			/* should use ClapTrap's version of attack since FragTrap is not required to define its version */
+			f1.attack(f2.getName());
 
-		f1 = f2;
-	}
-	#endif /* END OF ex01 TEST CODE */
+			f1 = f2;
+		}
+	#endif /* END OF ex02 TEST CODE */
 
 	DiamondTrap dt, dt2("DIAMOND-0x01");
 
