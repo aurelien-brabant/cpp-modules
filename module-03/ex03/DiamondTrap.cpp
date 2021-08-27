@@ -16,7 +16,6 @@ DiamondTrap::DiamondTrap(string const& name): ClapTrap(name + "_clap_name")
 DiamondTrap::DiamondTrap(DiamondTrap const &dt)
 {
 	*this = dt;
-	cout << "[\033[1;32mCTOR\033[0m] (COPY) \033[1;34mClap\033[0mTrap \"" << _name << "\" created" << endl;
 }
 
 DiamondTrap &DiamondTrap::operator=(DiamondTrap const &rhs)
