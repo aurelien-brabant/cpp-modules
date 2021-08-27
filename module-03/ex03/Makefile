@@ -4,4 +4,4 @@ TARGET		:= diamondtrap
 
 include ../../template.Makefile
 
-CPP_FLAGS	+= -Wshadow -g
+CPP_FLAGS	+= -Wshadow
