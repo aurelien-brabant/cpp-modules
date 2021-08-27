@@ -7,8 +7,8 @@ using std::cout; using std::endl;
 FragTrap::FragTrap(string const& name): ClapTrap(name)
 {
 	_hit_points = 100;
-	_energy_points = 50;
-	_attack_damage = 20;
+	_energy_points = 100;
+	_attack_damage = 30;
 
 	cout << "[\033[1;32mCTOR\033[0m] \033[1;35mFrag\033[0mTrap \"" << _name << "\" created" << endl;
 }

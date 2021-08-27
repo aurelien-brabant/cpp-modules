@@ -6,11 +6,11 @@
 using std::string;
 using std::cout; using std::endl;
 
-DiamondTrap::DiamondTrap(string const& name): ClapTrap(name + "_clap_name"), _name(name)
+DiamondTrap::DiamondTrap(string const& name): ClapTrap(name + "_clap_name")
 {
-	_hit_points = FragTrap::_hit_points;
-	_energy_points = ScavTrap::_energy_points;
-	_attack_damage = FragTrap::_attack_damage;
+	_hit_points = 100 /* FragTrap */;
+	_energy_points = 50; /* ScavTrap */
+	_attack_damage = 30 /* FragTrap */;
 }
 
 DiamondTrap::DiamondTrap(DiamondTrap const &dt)
