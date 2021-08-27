@@ -13,6 +13,17 @@ FragTrap::FragTrap(string const& name): ClapTrap(name)
 	cout << "[\033[1;32mCTOR\033[0m] \033[1;35mFrag\033[0mTrap \"" << _name << "\" created" << endl;
 }
 
+FragTrap::FragTrap(FragTrap const& ft)
+{
+	*this = ft;
+}
+
+FragTrap &FragTrap::operator=(FragTrap const &ft)
+{
+	ClapTrap::operator=(ft);
+	return *this;
+}
+
 FragTrap::~FragTrap(void)
 {
 	cout << "[\033[1;31mDTOR\033[0m] \033[1;35mFrag\033[0mTrap \"" << _name << "\" destroyed" << endl;

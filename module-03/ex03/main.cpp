@@ -76,5 +76,7 @@ int main(void)
 	dt2 = tmp;
 	dt2.whoAmI();
 
+	DiamondTrap dflt;
+
 	return 0;
 }

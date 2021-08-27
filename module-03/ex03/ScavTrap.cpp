@@ -13,6 +13,17 @@ ScavTrap::ScavTrap(string const& name): ClapTrap(name)
 	cout << "[\033[1;32mCTOR\033[0m] \033[1;33mScav\033[0mTrap \"" << _name << "\" created" << endl;
 }
 
+ScavTrap::ScavTrap(ScavTrap const& ft)
+{
+	*this = ft;
+}
+
+ScavTrap &ScavTrap::operator=(ScavTrap const &ft)
+{
+	ClapTrap::operator=(ft);
+	return *this;
+}
+
 ScavTrap::~ScavTrap(void)
 {
 	cout << "[\033[1;31mDTOR\033[0m] \033[1;33mScav\033[0mTrap \"" << _name << "\" destroyed" << endl;
