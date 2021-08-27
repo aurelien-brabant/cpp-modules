@@ -33,7 +33,6 @@ DiamondTrap &DiamondTrap::operator=(DiamondTrap const &rhs)
 	return *this;
 }
 
-
 void	DiamondTrap::whoAmI(void) const
 {
 	cout << _name << " (" << ClapTrap::_name << ")" << endl;
