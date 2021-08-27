@@ -16,6 +16,7 @@ ScavTrap::ScavTrap(string const& name): ClapTrap(name)
 ScavTrap::ScavTrap(ScavTrap const& ft)
 {
 	*this = ft;
+	cout << "[\033[1;32mCTOR\033[0m] (COPY) \033[1;33mScav\033[0mTrap \"" << _name << "\" created" << endl;
 }
 
 ScavTrap &ScavTrap::operator=(ScavTrap const &ft)
