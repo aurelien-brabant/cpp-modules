@@ -67,5 +67,14 @@ int main(void)
 	dt.guardGate();
 	dt.whoAmI();
 
+	/* test copy control */
+
+	DiamondTrap tmp(dt2);
+	dt2 = dt;
+	dt2.whoAmI();
+
+	dt2 = tmp;
+	dt2.whoAmI();
+
 	return 0;
 }
