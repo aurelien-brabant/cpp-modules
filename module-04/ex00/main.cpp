@@ -1,25 +1,26 @@
 #include <iostream>
 #include "Animal.hpp"
 #include "Dog.hpp"
+#include "Cat.hpp"
 
 using std::cout; using std::endl;
 
 int main(void)
 {
-    const Animal* meta = new Animal();
-    cout << *meta << endl;
+    const Animal* animal = new Animal();
+    cout << *animal << endl;
+    delete animal;
 
     const Animal *dog = new Dog();
     cout << *dog << endl;
 
+    // testing animal copy, should output animal's caracteristics, not Dog's
     cout << Animal(*dog) << endl;
 
-    const Dog normalDog, copiedDog(normalDog);
-
-    cout << copiedDog << endl;
-
     delete dog;
-    delete meta;
+
+    Animal *cat = new Cat();
+    cout << *cat << endl;
 
     return 0;
 }
