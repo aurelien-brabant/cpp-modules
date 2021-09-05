@@ -17,14 +17,13 @@ Animal::Animal(Animal const& rhs)
 
 Animal::~Animal(void)
 {
-    cout << "[DTOR] " << _type << endl;
+    cout << "[DTOR] Animal" << endl;
 }
 
 Animal& Animal::operator=(Animal const& rhs)
 {
-    if (this != &rhs) {
-        _type = rhs._type;
-    }
+    (void)rhs;
+    _type = "Animal";
 
     return *this;
 }
@@ -36,7 +35,7 @@ string Animal::getType(void) const
 
 void Animal::makeSound(void) const
 {
-    cout << "* Unbearable animal sound *" << endl;
+    cout << "* Unbearable animal sound *";
 }
 
 /*
