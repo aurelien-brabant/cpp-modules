@@ -24,7 +24,7 @@ int main(void)
 
     // TEST WRONG CAT
     WrongAnimal *wa = new WrongCat();
-    // should output WrongAnimal's sound, not WrongCat's.
+    // should output WrongAnimal's sound, not WrongCat's. Because WrongAnimal's did not declare makeSound as virtual
     cout << *wa << endl;
     delete wa;
 
