@@ -47,11 +47,13 @@ int main(void)
 	cout << dog->brain->getIdea(Brain::idea_nb - 1) << endl;
 	cout << stackDog.brain->getIdea(Brain::idea_nb - 1) << endl;
 
-	// destruction sequence
 
+	// delete EACH allocated animal
     for (size_t i = 0; i != array_size; ++i) {
         delete animals[i];
     }
+
+	// delete the dynamic array that holds pointers to Animals
     delete[] animals;
 
     return 0;
