@@ -20,20 +20,34 @@ int main(void)
         }
     }
 
-    Dog *dog = dynamic_cast<Dog *>(animals[0]);
-    Cat *cat = dynamic_cast<Cat *>(animals[array_size - 1]);
+	// Testing Cat copy
 
-    (void)dog;
+    Cat *cat = dynamic_cast<Cat *>(animals[array_size - 1]);
 
     cat->brain->setIdea(0, "cat's idea");
     cout << cat->brain->getIdea(0) << endl;
 
-    //test copy
     Cat stackCat = *cat;
+
     stackCat.brain->setIdea(0, "Modified cat's idea");
 
     cout << cat->brain->getIdea(0) << endl;
     cout << stackCat.brain->getIdea(0) << endl;
+
+	// Testing Dog copy
+	
+	Dog *dog = dynamic_cast<Dog *>(animals[0]);
+
+	dog->brain->setIdea(Brain::idea_nb - 1, "dog's last idea");
+	cout << dog->brain->getIdea(Brain::idea_nb - 1) << endl;
+
+	Dog stackDog = *dog; // stackDog.brain should be completely different than dog->brain as deep copy must be performed.
+	stackDog.brain->setIdea(99, "Modified dog's last idea");
+	
+	cout << dog->brain->getIdea(Brain::idea_nb - 1) << endl;
+	cout << stackDog.brain->getIdea(Brain::idea_nb - 1) << endl;
+
+	// destruction sequence
 
     for (size_t i = 0; i != array_size; ++i) {
         delete animals[i];

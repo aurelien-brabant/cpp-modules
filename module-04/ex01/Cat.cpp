@@ -12,7 +12,7 @@ Cat::Cat(): Animal(), brain(new Brain())
     _type = "Cat";
 }
 
-Cat::Cat(Cat const& rhs)
+Cat::Cat(Cat const& rhs): brain(new Brain())
 {
     #ifdef DEBUG
     cout << "[CTOR] Cat (copy)" << endl;
@@ -35,8 +35,7 @@ Cat& Cat::operator=(const Cat& rhs)
 
     if (this != &rhs) {
         // deep copy: this and rhs will not share the same array.
-        delete brain;
-        brain = new Brain(*rhs.brain);
+       	*brain = *rhs.brain;
     }
 
     return *this;

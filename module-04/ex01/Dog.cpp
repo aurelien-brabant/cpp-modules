@@ -12,7 +12,7 @@ Dog::Dog(): Animal(), brain(new Brain())
     #endif
 }
 
-Dog::Dog(Dog const& rhs)
+Dog::Dog(Dog const& rhs): brain(new Brain())
 {
     *this = rhs;
     #ifdef DEBUG
@@ -26,8 +26,7 @@ Dog const& Dog::operator=(Dog const& rhs)
     _type = "Dog";
 
 	if (this != &rhs) {
-		delete brain;
-		brain = new Brain(*rhs.brain);
+		*brain = *rhs.brain;	
 	}
     
     return *this;
