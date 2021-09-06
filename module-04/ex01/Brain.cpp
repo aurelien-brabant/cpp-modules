@@ -7,14 +7,23 @@ using std::cout; using std::endl; using std::ostream;
 
 Brain::Brain()
 {
+	#ifdef DEBUG
+	cout << "[CTOR] Brain" << endl;
+	#endif
 }
 
 Brain::~Brain()
 {
+	#ifdef DEBUG
+	cout << "[DTOR] Brain" << endl;
+	#endif
 }
 
 Brain::Brain(Brain const& rhs)
 {
+	#ifdef DEBUG
+	cout << "[CTOR] Brain (copy)" << endl;
+	#endif
 	*this = rhs;
 }
 
