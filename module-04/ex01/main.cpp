@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongCat.hpp"
 
 using std::cout; using std::endl;
 
