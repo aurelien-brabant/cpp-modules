@@ -25,6 +25,11 @@ Dog const& Dog::operator=(Dog const& rhs)
     Animal::operator=(rhs);
     _type = "Dog";
 
+	if (this != &rhs) {
+		delete brain;
+		brain = new Brain(*rhs.brain);
+	}
+    
     return *this;
 }
 

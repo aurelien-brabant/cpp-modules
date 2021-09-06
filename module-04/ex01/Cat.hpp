@@ -5,9 +5,8 @@
 
 class Cat: public Animal
 {
-    Brain *brain;
-
     public:
+        Brain *brain;
         Cat();
         Cat(Cat const& rhs);
         Cat& operator=(Cat const& rhs);

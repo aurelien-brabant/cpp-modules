@@ -1,6 +1,7 @@
 #ifndef BRAIN_HPP
 # define BRAIN_HPP
 # include <string>
+# include <iostream>
 
 struct Brain
 {
@@ -12,6 +13,8 @@ struct Brain
 	~Brain();
 
 	Brain& operator=(Brain const& rhs);
+	std::string const &getIdea(size_t index) const;
+	void setIdea(size_t index, std::string const &s);
 };
 
 #endif

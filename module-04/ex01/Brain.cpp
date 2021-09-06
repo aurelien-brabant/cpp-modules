@@ -31,7 +31,12 @@ Brain& Brain::operator=(Brain const& rhs)
 	return *this;
 }
 
-ostream& operator<<(ostream& os, Brain const& rhs)
+string const& Brain::getIdea(size_t index) const
 {
-	return os;
+	return ideas[index];
+}
+
+void Brain::setIdea(size_t index, string const &s)
+{
+	ideas[index] = s;
 }

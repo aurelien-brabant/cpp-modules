@@ -35,7 +35,8 @@ Cat& Cat::operator=(const Cat& rhs)
 
     if (this != &rhs) {
         // deep copy: this and rhs will not share the same array.
-        brain = rhs.brain;
+        delete brain;
+        brain = new Brain(*rhs.brain);
     }
 
     return *this;

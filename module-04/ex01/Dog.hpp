@@ -5,9 +5,8 @@
 
 class Dog: public Animal
 {
-    Brain* brain;
-
     public:
+        Brain* brain;
         Dog(void);
         Dog(Dog const& rhs);
         Dog const &operator=(Dog const& rhs);
