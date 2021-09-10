@@ -19,23 +19,26 @@ RM			:= rm -rf
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(LD) $(OBJS) -o $(TARGET)
+	@$(LD) $(OBJS) -o $(TARGET)
+	@printf "LD $(TARGET)\n"
 
 ifdef DEBUG
 %.o: %.cpp $(HEADERS)
-	$(CC) -c $(CPP_FLAGS) -D DEBUG $< -o $@
+	@$(CC) -c $(CPP_FLAGS) -D DEBUG $< -o $@
+	@printf "CC $<\n"
 endif
 
 ifndef DEBUG
 %.o: %.cpp $(HEADERS)
-	$(CC) -c $(CPP_FLAGS) $< -o $@
+	@$(CC) -c $(CPP_FLAGS) $< -o $@
+	@printf "CC $<\n"
 endif
 
 clean:
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(TARGET)
+	@$(RM) $(TARGET)
 
 re: fclean all
 
