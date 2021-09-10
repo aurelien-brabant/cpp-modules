@@ -4,7 +4,7 @@
 
 using std::cout; using std::endl;
 
-Cure::Cure(void): AMateria("ice")
+Cure::Cure(void): AMateria("cure")
 {
 }
 

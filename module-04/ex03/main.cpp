@@ -13,7 +13,10 @@ int main(void)
 	rere.use(0, roro);
 
 	rere.equip(&cure);
-	rere.use(1, roro);
+	rere.equip(&cure);
+	rere.equip(&cure);
+
+	rere.printDebug();
 
 	return 0;
 }

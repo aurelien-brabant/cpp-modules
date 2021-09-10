@@ -1,10 +1,15 @@
 #include <iostream>
 #include "Character.hpp"
 
-using std::cerr;
+using std::cout; using std::endl;
 
 Character::Character(std::string const & name): _name(name), _materia()
 {
+}
+
+bool Character::isValidMateria(int idx)
+{
+	return (idx >= 0 && idx < _inventory_size) && _materia[idx];
 }
 
 void Character::equip(AMateria *m)
@@ -16,28 +21,42 @@ void Character::equip(AMateria *m)
 			return ;
 		}
 	}
-
-	cerr << "Could not equip materia: inventory is full\n";
+	// could not equip materia: all slots were taken: inventory is full.
 }
 
 void Character::unequip(int idx)
 {
-	if (!_materia[idx]) {
-		cerr << "Nothing in slot #" << idx << " of player's inventory\n";
+	if (isValidMateria(idx)) {
+		_materia[idx] = 0;
 	}
 }
 
 void Character::use(int idx, ICharacter & target)
 {
-	if (!_materia[idx]) {
-		cerr << "Nothing in slot #" << idx << " of player's inventory\n";
-		return ;
+	if (isValidMateria(idx)) {
+		_materia[idx]->use(target);
 	}
-
-	_materia[idx]->use(target);
 }
 
 std::string const & Character::getName(void) const
 {
 	return _name;
+}
+
+void Character::printDebug(void)
+{
+	cout << "name = " << getName() << "\nInventory: = [\n";
+
+	for (int i = 0; i != _inventory_size; ++i) {
+		if (!_materia[i]) {
+			cout << "Empty";
+		} else {
+			cout << _materia[i]->getType() << " (" << _materia[i] << ")";
+		}
+		if (i != _inventory_size - 1) {
+			cout << ",\n";
+		}
+	}
+
+	cout << "\n]" << endl;
 }
