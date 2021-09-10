@@ -4,19 +4,21 @@
 
 int main(void)
 {
-	Ice ice;
-	Cure cure;
+	Ice *ice = new Ice;
+	Cure *cure = new Cure;
 	Character rere("Réré"), roro("Roro");
 
-	rere.equip(&ice);
+	rere.equip(ice);
 
 	rere.use(0, roro);
 
-	rere.equip(&cure);
-	rere.equip(&cure);
-	rere.equip(&cure);
+	rere.equip(cure);
+
+	// a deep copy is performed
+	roro = rere;
 
 	rere.printDebug();
+	roro.printDebug();
 
 	return 0;
 }

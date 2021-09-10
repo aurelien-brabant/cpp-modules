@@ -10,6 +10,10 @@ AMateria::AMateria(string const& type): _type(type)
 {
 }
 
+AMateria::~AMateria(void)
+{
+}
+
 string const& AMateria::getType(void) const
 {
 	return _type;

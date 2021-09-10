@@ -7,6 +7,28 @@ Character::Character(std::string const & name): _name(name), _materia()
 {
 }
 
+Character::~Character(void)
+{
+	for (int i = 0; i != _inventory_size; ++i) {
+		delete _materia[i];
+	}
+}
+
+Character & Character::operator=(Character const & rhs)
+{
+	if (this != &rhs) {
+		_name = rhs._name;
+	
+		for (int i = 0; i != _inventory_size; ++i) {
+			delete _materia[i];
+			if (rhs._materia[i]) {
+				_materia[i] = rhs._materia[i]->clone();
+			}	
+		}
+	}
+	return *this;
+}
+
 bool Character::isValidMateria(int idx)
 {
 	return (idx >= 0 && idx < _inventory_size) && _materia[idx];
