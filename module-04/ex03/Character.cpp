@@ -31,9 +31,10 @@ void Character::use(int idx, ICharacter & target)
 {
 	if (!_materia[idx]) {
 		cerr << "Nothing in slot #" << idx << " of player's inventory\n";
+		return ;
 	}
-	// TODO: use materia when AMateria::use is properly implemented
-	(void) target;
+
+	_materia[idx]->use(target);
 }
 
 std::string const & Character::getName(void) const

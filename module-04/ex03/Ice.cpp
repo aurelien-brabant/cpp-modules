@@ -1,4 +1,8 @@
+#include <iostream>
 #include "Ice.hpp"
+#include "ICharacter.hpp"
+
+using std::cout; using std::endl;
 
 Ice::Ice(void): AMateria("ice")
 {
@@ -20,4 +24,9 @@ Ice::Ice(Ice const& rhs): AMateria("ice")
 Ice* Ice::clone(void) const
 {
 	return new Ice(*this);
+}
+
+void Ice::use(ICharacter & target)
+{
+	cout << "*Shoots an ice bolt at " << target.getName() << "*" << endl;	
 }

@@ -1,4 +1,8 @@
+#include <iostream>
 #include "Cure.hpp"
+#include "ICharacter.hpp"
+
+using std::cout; using std::endl;
 
 Cure::Cure(void): AMateria("ice")
 {
@@ -20,4 +24,9 @@ Cure::Cure(Cure const& rhs): AMateria("cure")
 Cure* Cure::clone(void) const
 {
 	return new Cure(*this);
+}
+
+void Cure::use(ICharacter & target)
+{
+	cout << "* heals " << target.getName() << "'s wounds*" << endl;
 }
