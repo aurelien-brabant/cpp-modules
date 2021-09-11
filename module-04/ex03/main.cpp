@@ -13,6 +13,8 @@ int main(void)
 	rere.use(0, roro);
 
 	rere.equip(cure);
+	rere.equip(cure);
+	rere.equip(cure);
 
 	// a deep copy is performed
 	roro = rere;

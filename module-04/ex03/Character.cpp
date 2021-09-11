@@ -41,6 +41,13 @@ bool Character::isValidMateria(int idx)
 
 void Character::equip(AMateria *m)
 {
+	// do not equip materia if it is already present
+	for (size_t i = 0; i != _inventory_size; ++i) {
+		if (_materia[i] == m) {
+			return ;
+		}
+	}	
+
 	for (size_t i = 0; i != _inventory_size; ++i) {
 		// if slot is empty, materia is equiped there.
 		if (!_materia[i]) {
