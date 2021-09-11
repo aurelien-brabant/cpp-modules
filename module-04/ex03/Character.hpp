@@ -15,6 +15,7 @@ class Character: public ICharacter
 
 	public:
 		Character(std::string const & name = "default");
+		Character(Character const & rhs);
 		~Character(void);
 
 		std::string const & getName() const;

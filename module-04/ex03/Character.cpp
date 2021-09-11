@@ -7,6 +7,11 @@ Character::Character(std::string const & name): _name(name), _materia()
 {
 }
 
+Character::Character(Character const & rhs)
+{
+	*this = rhs;
+}
+
 Character::~Character(void)
 {
 	for (int i = 0; i != _inventory_size; ++i) {
