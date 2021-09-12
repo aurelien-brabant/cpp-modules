@@ -32,6 +32,8 @@ MateriaSource & MateriaSource::operator=(MateriaSource const & rhs)
 
 void MateriaSource::learnMateria(AMateria *m)
 {
+	// ensure the exact same item in memory is not already there - if it is do nothing
+	// to avoid a double-free when destruction is done.
 	for (int i = 0; i != _recipeMax; ++i) {
 		if (_mRecipe[i] == m) {
 			return ;

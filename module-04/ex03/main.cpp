@@ -24,13 +24,22 @@ int main(void)
 	MateriaSource stackSrc(*dynamic_cast<MateriaSource *>(src));
 	Character stackMe(*dynamic_cast<Character *>(me));
 
-	AMateria *ice = stackSrc.createMateria("ice");
-	AMateria *cure = stackSrc.createMateria("cure");
+	Ice *iceToLearn = new Ice();
 
-	stackMe.equip(ice);
-	stackMe.equip(cure);
+	stackSrc.learnMateria(iceToLearn); // iceToLearn will be added, even if Ice recipe is already known by the source.
+	stackSrc.learnMateria(iceToLearn); // nothing will be added because the exact same recipe is already in the recipe list.
+	stackSrc.learnMateria(new Cure()); // ok: has 4 recipes
+	stackSrc.learnMateria(new Cure()); // should not crash: maximum amount of recipe reached.
+
 	stackMe.use(0, *bob);
 	stackMe.use(1, *bob);
+
+	stackMe.equip(stackSrc.createMateria("ice"));
+	stackMe.equip(stackSrc.createMateria("ice"));
+	stackMe.equip(stackSrc.createMateria("ice"));
+
+	// attempted to add 3 more materias to character's inventory. Only the first two must be effectively
+	// stored, and the program must NOT crash.
 
 	delete bob;
 	delete src;
