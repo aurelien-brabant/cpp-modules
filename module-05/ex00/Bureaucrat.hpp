@@ -9,7 +9,8 @@ class Bureaucrat
 	std::string const _name;
 	unsigned _grade;
 
-	void _validateGradeOrThrow(unsigned grade) throw(...);
+	void _validateGradeOrThrow(unsigned grade)
+		throw(GradeTooLowException, GradeTooHighException);
 
 	public:
 

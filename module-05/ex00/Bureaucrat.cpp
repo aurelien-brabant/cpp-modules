@@ -24,7 +24,8 @@ Bureaucrat & Bureaucrat::operator=(Bureaucrat const & rhs)
 	return *this;
 }
 
-void Bureaucrat::_validateGradeOrThrow(unsigned grade) throw(...)
+void Bureaucrat::_validateGradeOrThrow(unsigned grade)
+		throw(GradeTooLowException, GradeTooHighException)
 {
 	if (grade < 1) throw Bureaucrat::GradeTooHighException();
 	if (grade > 150) throw Bureaucrat::GradeTooLowException();
