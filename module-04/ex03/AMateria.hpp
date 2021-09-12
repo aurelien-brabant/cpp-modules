@@ -5,9 +5,6 @@
 
 class AMateria
 {
-	// copy constructor and assignment operator make no sense here: by providing
-	// a private declaration without any implementation, copy/assignment are made
-	// impossible.
 	AMateria(AMateria const & rhs);
 	AMateria & operator=(AMateria const & rhs);
 
