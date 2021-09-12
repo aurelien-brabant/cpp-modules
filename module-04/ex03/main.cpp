@@ -19,8 +19,21 @@ int main(void)
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
+
+	// MORE TESTING - Test copy for MateriaSource and Character
+	MateriaSource stackSrc(*dynamic_cast<MateriaSource *>(src));
+	Character stackMe(*dynamic_cast<Character *>(me));
+
+	AMateria *ice = stackSrc.createMateria("ice");
+	AMateria *cure = stackSrc.createMateria("cure");
+
+	stackMe.equip(ice);
+	stackMe.equip(cure);
+	stackMe.use(0, *bob);
+	stackMe.use(1, *bob);
+
 	delete bob;
-	delete me;
 	delete src;
+	delete me;
 	return 0;
 }

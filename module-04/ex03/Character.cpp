@@ -7,7 +7,7 @@ Character::Character(std::string const & name): _name(name), _materia()
 {
 }
 
-Character::Character(Character const & rhs)
+Character::Character(Character const & rhs): _materia()
 {
 	*this = rhs;
 }

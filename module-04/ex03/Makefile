@@ -3,3 +3,5 @@ HEADERS	:= Ice.hpp AMateria.hpp Cure.hpp ICharacter.hpp Character.hpp IMateriaSo
 TARGET	:= interface
 
 include ../../template.Makefile
+
+CPP_FLAGS	+= -g

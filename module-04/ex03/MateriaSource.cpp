@@ -7,7 +7,7 @@ MateriaSource::MateriaSource(void): _mRecipe()
 {
 }
 
-MateriaSource::MateriaSource(MateriaSource const &rhs)
+MateriaSource::MateriaSource(MateriaSource const &rhs): _mRecipe()
 {
 	*this = rhs;
 }
@@ -24,7 +24,7 @@ MateriaSource & MateriaSource::operator=(MateriaSource const & rhs)
 	if (this != &rhs) {
 		for (int i = 0; i != _recipeMax; ++i) {
 			delete _mRecipe[i];
-			_mRecipe[i] = rhs._mRecipe[i]->clone();
+			_mRecipe[i] = rhs._mRecipe[i] ? rhs._mRecipe[i]->clone() : 0;
 		}
 	}
 	return *this;
