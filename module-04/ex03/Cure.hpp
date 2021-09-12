@@ -3,11 +3,14 @@
 # include "AMateria.hpp"
 # include "ICharacter.hpp"
 
-class Cure: public AMateria {
+class Cure: public AMateria
+{
+	Cure(Cure const& rhs);
+	Cure &operator=(Cure const& rhs);
+
 	public:
 		Cure(void);
-		Cure(Cure const& rhs);
-		Cure &operator=(Cure const& rhs);
+		~Cure(void);
 
 		Cure* clone(void) const;
 		void use(ICharacter & target);

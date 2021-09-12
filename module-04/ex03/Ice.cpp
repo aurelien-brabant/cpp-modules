@@ -8,22 +8,13 @@ Ice::Ice(void): AMateria("ice")
 {
 }
 
-// Actually, there is nothing to copy.
-
-Ice& Ice::operator=(Ice const& rhs)
+Ice::~Ice(void)
 {
-	(void)rhs;
-	return *this;
-}
-
-Ice::Ice(Ice const& rhs): AMateria("ice")
-{
-	*this = rhs;
 }
 
 Ice* Ice::clone(void) const
 {
-	return new Ice(*this);
+	return new Ice();
 }
 
 void Ice::use(ICharacter & target)

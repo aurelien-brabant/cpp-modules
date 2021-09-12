@@ -4,8 +4,9 @@
 #include "MateriaSource.hpp"
 #include "IMateriaSource.hpp"
 
-int main()
+int main(void)
 {
+	// SUBJECT
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());

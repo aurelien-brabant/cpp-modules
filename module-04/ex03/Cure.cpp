@@ -8,22 +8,13 @@ Cure::Cure(void): AMateria("cure")
 {
 }
 
-// Actually, there is nothing to copy.
-
-Cure& Cure::operator=(Cure const& rhs)
+Cure::~Cure(void)
 {
-	(void)rhs;
-	return *this;
-}
-
-Cure::Cure(Cure const& rhs): AMateria("cure")
-{
-	*this = rhs;
 }
 
 Cure* Cure::clone(void) const
 {
-	return new Cure(*this);
+	return new Cure;
 }
 
 void Cure::use(ICharacter & target)

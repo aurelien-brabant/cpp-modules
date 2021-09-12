@@ -4,10 +4,12 @@
 # include "ICharacter.hpp"
 
 class Ice: public AMateria {
+	Ice(Ice const& rhs);
+	Ice &operator=(Ice const& rhs);
+
 	public:
 		Ice(void);
-		Ice(Ice const& rhs);
-		Ice &operator=(Ice const& rhs);
+		~Ice(void);
 
 		Ice* clone(void) const;
 		void use(ICharacter & target);
