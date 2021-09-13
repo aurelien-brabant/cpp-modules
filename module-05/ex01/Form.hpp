@@ -1,7 +1,9 @@
 #ifndef FORM_HPP
 # define FORM_HPP
 # include <string>
-# include "Bureaucrat.hpp"
+# include <iostream>
+
+class Bureaucrat;
 
 class Form
 {
@@ -45,5 +47,7 @@ class Form
 		
 		Form & operator=(Form const & rhs);
 };
+
+std::ostream & operator<<(std::ostream & os, Form const & rhs);
 
 #endif

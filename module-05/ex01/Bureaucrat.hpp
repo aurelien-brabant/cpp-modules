@@ -3,6 +3,7 @@
 # include <string>
 # include <stdexcept>
 # include <iostream>
+# include "Form.hpp"
 
 class Bureaucrat
 {
@@ -49,6 +50,7 @@ class Bureaucrat
 		// exception specification
 		void promote(void) throw(GradeTooHighException);
 		void demote(void) throw(GradeTooLowException);
+		void signForm(Form & form) throw (Form::GradeTooLowException);
 };
 
 std::ostream &operator<<(std::ostream & os, Bureaucrat const &rhs);

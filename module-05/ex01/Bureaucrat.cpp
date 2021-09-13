@@ -1,4 +1,10 @@
+#include <stdexcept>
+#include <iostream>
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
+
+using std::exception;
+using std::cout; using std::endl;
 
 Bureaucrat::Bureaucrat(std::string const &name, unsigned grade)
 	throw(Bureaucrat::GradeTooLowException, Bureaucrat::GradeTooHighException)
@@ -51,6 +57,16 @@ void Bureaucrat::demote(void) throw(Bureaucrat::GradeTooLowException)
 {
 	_validateGradeOrThrow(_grade + 1);
 	++_grade;
+}
+
+void Bureaucrat::signForm(Form & form) throw (Form::GradeTooLowException)
+{
+	try {
+		form.beSigned(*this);
+		cout << getName() << " signs " << form.getName() << endl;
+	} catch(exception & e) {
+		cout << getName() << " cannot sign " << form.getName() << " because " << e.what() << endl;	
+	}
 }
 
 std::ostream &operator<<(std::ostream & os, Bureaucrat const &rhs)

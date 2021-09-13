@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 using std::exception;
 
@@ -8,6 +9,8 @@ using std::cout; using std::endl; using std::cerr;
 
 int main(void)
 {
+	// BUREAUCRAT CODE
+
 	Bureaucrat anonymous, jjq("Jean-Jacques", 1), jjqBis(jjq);
 
 	cout << anonymous << "\n" << jjq << "\n" << jjqBis << "\n";
@@ -31,6 +34,17 @@ int main(void)
 	} catch (exception & e) {
 		cerr << "\033[1;31m" << e.what() << "\033[0m" << endl;
 	}
+
+	// FORM CODE
 	
+	Form f, f2("Social Security Form", 2, 1), f2bis(f2);
+
+	cout << f << "\n" << f2 << "\n" << f2bis << endl;
+
+	jjq.signForm(f2); // okay: f2's signGrade is 1, and jjq's grade is 1 too
+
+	jjq.demote(); // 1 -> 2
+	jjq.signForm(f2); // f2's signGrade is 1, so this is an error
+
 	return 0;
 }
