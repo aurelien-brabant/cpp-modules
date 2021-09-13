@@ -77,7 +77,7 @@ Bureaucrat::GradeTooHighException & Bureaucrat::GradeTooHighException::operator=
 
 char const * Bureaucrat::GradeTooHighException::what(void) const throw()
 {
-	return "Grade is too high";
+	return "Bureaucrat: Grade too high";
 }
 
 // Bureaucrat::GradeTooLowException
@@ -99,5 +99,5 @@ Bureaucrat::GradeTooLowException & Bureaucrat::GradeTooLowException::operator=(B
 
 char const * Bureaucrat::GradeTooLowException::what(void) const throw()
 {
-	return "Grade is too low";
+	return "Bureaucrat: grade too low";
 }
