@@ -38,8 +38,6 @@ class Form
 				const char *what() const throw();
 		};
 
-		virtual void executeAction() const = 0;
-		
 		bool getIsSigned(void) const;
 		unsigned getExecGrade(void) const;
 		unsigned getSignGrade(void) const;
@@ -52,8 +50,6 @@ class Form
 		~Form(void);
 		
 		Form & operator=(Form const & rhs);
-
-		void execute(Bureaucrat const & executor) const;
 };
 
 std::ostream & operator<<(std::ostream & os, Form const & rhs);
