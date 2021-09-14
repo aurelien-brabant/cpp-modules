@@ -3,6 +3,7 @@
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 using std::exception;
 
@@ -55,6 +56,16 @@ int main(void)
 	jjq.signForm(rrf);	
 	
 	rrf.execute(jjq);	
+
+	// PresidentialPardonForm
+
+	PresidentialPardonForm ppf("someone"), ppfBis(ppf);
+
+	cout << ppf << "\n" << ppfBis << "\n";
+
+	jjq.signForm(ppf);
+
+	ppf.execute(jjq);	
 
 	return 0;
 }
