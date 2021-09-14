@@ -38,6 +38,7 @@ class Form
 				const char *what() const throw();
 		};
 		
+		bool getIsSigned(void) const;
 		unsigned getExecGrade(void) const;
 		unsigned getSignGrade(void) const;
 		std::string const & getName(void) const;

@@ -31,6 +31,11 @@ Form & Form::operator=(Form const & rhs)
 	return *this;
 }
 
+bool Form::getIsSigned(void) const
+{
+	return _isSigned;	
+}
+
 string const & Form::getName(void) const
 {
 	return _name;
@@ -68,7 +73,7 @@ void Form::beSigned(Bureaucrat const & bureaucrat)
 
 ostream & operator<<(ostream & os, Form const & rhs)
 {
-	return (os << rhs.getName() << " (sign: " << rhs.getSignGrade() << ", exec: " << rhs.getExecGrade() << ")");
+	return (os << rhs.getName() << (rhs.getIsSigned() ? " <signed>" : "") << " (sign: " << rhs.getSignGrade() << ", exec: " << rhs.getExecGrade() << ")");
 }
 
 // Form::GradeTooLowException

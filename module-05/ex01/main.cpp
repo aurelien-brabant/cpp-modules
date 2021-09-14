@@ -43,6 +43,8 @@ int main(void)
 
 	jjq.signForm(f2); // okay: f2's signGrade is 1, and jjq's grade is 1 too
 
+	cout << f2 << endl; // should be signed
+
 	jjq.demote(); // 1 -> 2
 	jjq.signForm(f2); // f2's signGrade is 1, so this is an error
 
