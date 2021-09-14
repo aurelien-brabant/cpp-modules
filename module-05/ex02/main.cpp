@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 using std::exception;
 
@@ -35,7 +36,7 @@ int main(void)
 		cerr << "\033[1;31m" << e.what() << "\033[0m" << endl;
 	}
 
-	// FORM CODE
+	// ShrubberyCreationForm
 
 	ShrubberyCreationForm scf("home"), scfBis(scf);
 
@@ -44,6 +45,16 @@ int main(void)
 	jjq.signForm(scf);
 
 	scf.execute(jjq);
+
+	// RobotomyRequestForm
+
+	RobotomyRequestForm rrf("someone"), rrfBis(rrf);	
+
+	cout << rrf << "\n" << rrfBis << "\n";
+
+	jjq.signForm(rrf);	
+	
+	rrf.execute(jjq);	
 
 	return 0;
 }
