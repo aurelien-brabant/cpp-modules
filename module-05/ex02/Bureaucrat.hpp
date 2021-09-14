@@ -46,10 +46,10 @@ class Bureaucrat
 
 		std::string const & getName(void) const;
 		unsigned getGrade(void) const;
-		// exception specification
 		void promote(void) throw(GradeTooHighException);
 		void demote(void) throw(GradeTooLowException);
 		void signForm(Form & form) throw (Form::GradeTooLowException);
+		void executeForm(Form const & form) const;
 };
 
 std::ostream &operator<<(std::ostream & os, Bureaucrat const &rhs);

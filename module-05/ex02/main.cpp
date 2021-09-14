@@ -37,6 +37,8 @@ int main(void)
 		cerr << "\033[1;31m" << e.what() << "\033[0m" << endl;
 	}
 
+	Bureaucrat weakBureaucrat("Weaky", 150);
+
 	// ShrubberyCreationForm
 
 	ShrubberyCreationForm scf("home"), scfBis(scf);
@@ -45,7 +47,7 @@ int main(void)
 
 	jjq.signForm(scf);
 
-	scf.execute(jjq);
+	jjq.executeForm(scf);
 
 	// RobotomyRequestForm
 
@@ -55,7 +57,7 @@ int main(void)
 
 	jjq.signForm(rrf);	
 	
-	rrf.execute(jjq);	
+	jjq.executeForm(rrf);
 
 	// PresidentialPardonForm
 
@@ -65,7 +67,10 @@ int main(void)
 
 	jjq.signForm(ppf);
 
-	ppf.execute(jjq);	
+	jjq.executeForm(ppf);
+
+
+	weakBureaucrat.executeForm(ppf); // Should give an error: grade of weakBureaucrat too low.
 
 	return 0;
 }
