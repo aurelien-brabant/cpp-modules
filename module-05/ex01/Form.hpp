@@ -37,6 +37,8 @@ class Form
 				GradeTooLowException & operator=(GradeTooLowException const & rhs);
 				const char *what() const throw();
 		};
+
+		virtual void executeAction() = 0;
 		
 		bool getIsSigned(void) const;
 		unsigned getExecGrade(void) const;

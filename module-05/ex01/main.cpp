@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 using std::exception;
 
@@ -36,31 +36,12 @@ int main(void)
 	}
 
 	// FORM CODE
-	
-	Form f, f2("Social Security Form", 2, 1), f2bis(f2);
 
-	cout << f << "\n" << f2 << "\n" << f2bis << endl;
+	ShrubberyCreationForm scf("home"), scfBis(scf);
 
-	jjq.signForm(f2); // okay: f2's signGrade is 1, and jjq's grade is 1 too
+	cout << scf << "\n" << scfBis << "\n";
 
-	cout << f2 << endl; // should be signed
-
-	jjq.demote(); // 1 -> 2
-	jjq.signForm(f2); // f2's signGrade is 1, so this is an error
-
-	// invalid grade in form constructor
-
-	try {
-		Form f("invalid form", 1, 151);
-	} catch (std::exception & e) {
-		cerr << "\033[1;31m" << e.what() << "\033[0m" << endl;
-	}
-
-	try {
-		Form f("invalid form", 0, 50);
-	} catch (std::exception & e) {
-		cerr << "\033[1;31m" << e.what() << "\033[0m" << endl;
-	}
+	scf.executeAction();
 
 	return 0;
 }
