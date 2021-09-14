@@ -46,5 +46,19 @@ int main(void)
 	jjq.demote(); // 1 -> 2
 	jjq.signForm(f2); // f2's signGrade is 1, so this is an error
 
+	// invalid grade in form constructor
+
+	try {
+		Form f("invalid form", 1, 151);
+	} catch (std::exception & e) {
+		cerr << "\033[1;31m" << e.what() << "\033[0m" << endl;
+	}
+
+	try {
+		Form f("invalid form", 0, 50);
+	} catch (std::exception & e) {
+		cerr << "\033[1;31m" << e.what() << "\033[0m" << endl;
+	}
+
 	return 0;
 }

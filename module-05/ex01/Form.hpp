@@ -12,6 +12,8 @@ class Form
 	unsigned _execGrade;
 	unsigned _signGrade;
 
+	void _validateGradeOrThrow(unsigned grade) throw(GradeTooHighException, GradeTooLowException);
+
 	public:
 
 		// Bureaucrat exceptions
@@ -39,11 +41,12 @@ class Form
 		unsigned getExecGrade(void) const;
 		unsigned getSignGrade(void) const;
 		std::string const & getName(void) const;
-
 		void beSigned(Bureaucrat const & signatory);
 
-		Form(std::string const & name = "unnamed", unsigned execGrade = 1, unsigned signGrade = 1);
+		Form(std::string const & name = "unnamed", unsigned execGrade = 1, unsigned signGrade = 1)
+			throw(GradeTooLowException, GradeTooHighException);
 		Form(Form const & rhs);
+		~Form(void);
 		
 		Form & operator=(Form const & rhs);
 };

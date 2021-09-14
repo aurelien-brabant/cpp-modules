@@ -5,13 +5,20 @@ using std::string;
 using std::ostream;
 
 Form::Form(string const &name, unsigned execGrade, unsigned signGrade)
+	throw(GradeTooLowException, GradeTooHighException)
 	: _name(name), _execGrade(execGrade), _signGrade(signGrade)
 {
+	_validateGradeOrThrow(_execGrade);
+	_validateGradeOrThrow(_signGrade);
 }
 
 Form::Form(Form const & rhs)
 {
 	*this = rhs;
+}
+
+Form::~Form(void)
+{
 }
 
 Form & Form::operator=(Form const & rhs)
@@ -39,6 +46,18 @@ unsigned Form::getSignGrade(void) const
 	return _signGrade;
 }
 
+void Form::_validateGradeOrThrow(unsigned grade)
+	throw(GradeTooLowException, GradeTooHighException)
+{
+	if (grade < 1) {
+		throw GradeTooHighException();	
+	}
+
+	if (grade > 150) {
+		throw GradeTooLowException();
+	}
+}
+
 void Form::beSigned(Bureaucrat const & bureaucrat)
 {
 	if (bureaucrat.getGrade() > getSignGrade()) {
@@ -46,7 +65,6 @@ void Form::beSigned(Bureaucrat const & bureaucrat)
 	}
 	_isSigned = true;
 }
-
 
 ostream & operator<<(ostream & os, Form const & rhs)
 {
@@ -94,5 +112,5 @@ Form::GradeTooHighException & Form::GradeTooHighException::operator=(GradeTooHig
 
 char const * Form::GradeTooHighException::what(void) const throw()
 {
-	return "Form: grade too low";
+	return "Form: grade too high";
 }

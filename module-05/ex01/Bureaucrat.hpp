@@ -40,7 +40,6 @@ class Bureaucrat
 		Bureaucrat(const std::string &name = "Unnamed", unsigned grade = 150)
 			throw(GradeTooLowException, GradeTooHighException);
 		Bureaucrat(Bureaucrat const & rhs);
-
 		~Bureaucrat(void);
 
 		Bureaucrat & operator=(Bureaucrat const & rhs);
