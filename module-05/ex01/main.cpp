@@ -41,7 +41,9 @@ int main(void)
 
 	cout << scf << "\n" << scfBis << "\n";
 
-	scf.executeAction();
+	jjq.signForm(scf);
+
+	scf.execute(jjq);
 
 	return 0;
 }

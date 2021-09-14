@@ -27,7 +27,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 {
 }
 
-void ShrubberyCreationForm::executeAction(void)
+void ShrubberyCreationForm::executeAction(void) const
 {
 	ofstream ofs(getName().c_str());
 

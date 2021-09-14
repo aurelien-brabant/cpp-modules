@@ -12,7 +12,7 @@ class ShrubberyCreationForm: public Form
 
 		ShrubberyCreationForm & operator=(ShrubberyCreationForm const & rhs);
 		
-		void executeAction(void);	
+		void executeAction(void) const;
 };
 
 #endif

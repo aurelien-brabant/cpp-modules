@@ -31,6 +31,14 @@ Form & Form::operator=(Form const & rhs)
 	return *this;
 }
 
+void Form::execute(Bureaucrat const & executor) const
+{
+	if (!getIsSigned() || executor.getGrade() > getExecGrade()) {
+		throw GradeTooLowException();
+	}
+	executeAction();
+}
+
 bool Form::getIsSigned(void) const
 {
 	return _isSigned;	
