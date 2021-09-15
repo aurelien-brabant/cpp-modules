@@ -4,6 +4,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 using std::exception;
 
@@ -70,6 +71,22 @@ int main(void)
 	jjq.executeForm(ppf);
 
 	weakBureaucrat.executeForm(ppf); // Should give an error: grade of weakBureaucrat too low.
+
+	// Intern code
+
+	Intern intern;
+
+	Form *robotomyForJjq = intern.makeForm("robotomy request", "Jean-Jacques");
+
+	jjq.signForm(*robotomyForJjq);
+
+	jjq.executeForm(*robotomyForJjq);
+
+	delete robotomyForJjq;
+
+	Form *unknownForm = intern.makeForm("hey ho hey ho", "someome");
+
+	cout << unknownForm << "\n";
 
 	return 0;
 }

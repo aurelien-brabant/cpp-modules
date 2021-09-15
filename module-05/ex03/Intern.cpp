@@ -5,7 +5,7 @@
 #include "PresidentialPardonForm.hpp"
 
 using std::string;
-using std::cerr;
+using std::cerr; using std::cout; using std::endl;
 
 Intern::Intern(void)
 {
@@ -42,6 +42,7 @@ Form * Intern::makeForm(string const & formType, string const & target) const
 
 	for (size_t i = 0; i != allocatorsNb; ++i) {
 		if (formEntries[i].formType == formType) {
+			cout << "Intern creates " << formType << endl;
 			return (this->*(formEntries[i].formAllocator))(target);
 		}
 	}
