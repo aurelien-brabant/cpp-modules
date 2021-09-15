@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdexcept>
+
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
@@ -85,6 +86,20 @@ int main(void)
 	jjq.executeForm(*robotomyForJjq);
 
 	delete robotomyForJjq;
+
+	Form *presidentialPardonForJjq = intern.makeForm("presidential pardon", "Jean-Jacques");
+	
+	jjq.signForm(*presidentialPardonForJjq);
+	jjq.executeForm(*presidentialPardonForJjq);
+
+	delete presidentialPardonForJjq;
+
+	Form *shrubberyCreationAtHome = intern.makeForm("shrubbery creation", "home");
+	
+	jjq.signForm(*shrubberyCreationAtHome);
+	jjq.executeForm(*shrubberyCreationAtHome);
+
+	delete shrubberyCreationAtHome;
 
 	Form *unknownForm = intern.makeForm("hey ho hey ho", "someome");
 

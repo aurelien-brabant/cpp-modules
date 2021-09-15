@@ -47,6 +47,6 @@ Form * Intern::makeForm(string const & formType, string const & target) const
 		}
 	}
 
-	cerr << formType << " is not a valid form\n";
+	cerr << formType << " is not a valid form type\n";
 	return 0;
 }
