@@ -1,8 +1,11 @@
 #include <iostream>
 #include "ScalarConverter.hpp"
+#include <string>
 
 using std::cerr;
 using std::cout;
+
+double stod(std::string const & s);
 
 int main(int argc, char **argv)
 {
@@ -11,7 +14,11 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	ScalarConverter scalcv;
+	(void)argv;
 
-	cout << scalcv.detectType(argv[1]) << "\n";
+	//ScalarConverter scalcv;
+
+	//cout << scalcv.detectType(argv[1]) << "\n";
+
+	cout << stod("-54345.45") << "\n";
 }

@@ -62,45 +62,29 @@ bool ScalarConverter::isFloat(string const & literal) const
 	return true;
 }
 
-bool ScalarConverter::isDouble(string const & literal)
+ScalarConverter::ScalarType ScalarConverter::detectType(string const & literal) const
 {
-	bool pointFlag = false;
+	bool floatingPoint = false;
 
-	// accepted pseudo literals
-	if (literal == "+inf" || literal == "-inf" || literal == "nan") {
-		return true;
+	if (literal.size() == 1 && !isdigit(literal[0])) {
+		return CHAR;	
 	}
 
-	for (size_t i = 0; i != literal.size() - 1; ++i) {
+	for (size_t i = 0; i != literal.size(); ++i) {
 		if (!isdigit(literal[i])) {
-			if (literal[i] == '.' && !pointFlag && (i != 0 || i != literal.size() - 1)) {
-				pointFlag = true;
+			if ((literal[i] == '-' || literal[i] == '+') && i == 0) {
 				continue ;
 			}
-			return false;
+			else if (literal[i] == 'f' && i == literal.size() - 1) {
+				return FLOAT;
+			}
+			else if (literal[i] == '.' && !floatingPoint && (i != 0 && i != literal.size() - 1))	{
+				floatingPoint = true;
+				continue ;
+			}
+			return UNIDENTIFIED_LITERAL;
 		}
 	}
 	
-	return true;
-}
-
-ScalarConverter::ScalarType ScalarConverter::detectType(string const & literal) const
-{
-	typedef bool (ScalarConverter::*LiteralIdentifier)(string const &) const;
-
-	static const LiteralIdentifier identifiers[] = {
-		&ScalarConverter::isChar,
-		&ScalarConverter::isInt,
-		&ScalarConverter::isFloat
-	};
-
-	size_t identifierNb = sizeof (identifiers) / sizeof (LiteralIdentifier);
-
-	for (size_t i = 0; i != identifierNb; ++i) {
-		if ((this->*identifiers[i])(literal)) {
-			return static_cast<ScalarType>(i);
-		}
-	}
-
-	return UNIDENTIFIED_LITERAL;
+	return floatingPoint ? DOUBLE : INT;
 }
