@@ -38,6 +38,16 @@ class Form
 				const char *what() const throw();
 		};
 
+		class ExecNotSignedException: public std::exception
+		{
+			public:
+				ExecNotSignedException(void);
+				ExecNotSignedException(ExecNotSignedException const & rhs);
+				
+				ExecNotSignedException & operator=(ExecNotSignedException const & rhs);
+				const char *what() const throw();
+		};
+
 		virtual void executeAction() const = 0;
 		
 		bool getIsSigned(void) const;

@@ -6,7 +6,7 @@ using std::ostream;
 
 Form::Form(string const &name, unsigned execGrade, unsigned signGrade)
 	throw(GradeTooLowException, GradeTooHighException)
-	: _name(name), _execGrade(execGrade), _signGrade(signGrade)
+	: _name(name), _isSigned(false), _execGrade(execGrade), _signGrade(signGrade)
 {
 	_validateGradeOrThrow(_execGrade);
 	_validateGradeOrThrow(_signGrade);
@@ -33,7 +33,11 @@ Form & Form::operator=(Form const & rhs)
 
 void Form::execute(Bureaucrat const & executor) const
 {
-	if (!getIsSigned() || executor.getGrade() > getExecGrade()) {
+	if (!getIsSigned()) {
+		throw ExecNotSignedException();
+	}
+
+	if (executor.getGrade() > getExecGrade()) {
 		throw GradeTooLowException();
 	}
 	executeAction();
@@ -126,4 +130,26 @@ Form::GradeTooHighException & Form::GradeTooHighException::operator=(GradeTooHig
 char const * Form::GradeTooHighException::what(void) const throw()
 {
 	return "Form: grade too high";
+}
+
+// Form::ExecNotSignedException
+
+Form::ExecNotSignedException::ExecNotSignedException(void)
+{
+}
+
+Form::ExecNotSignedException::ExecNotSignedException(ExecNotSignedException const & rhs)
+{
+	(void)rhs;
+}
+
+Form::ExecNotSignedException & Form::ExecNotSignedException::operator=(ExecNotSignedException const & rhs)
+{
+	(void)rhs;
+	return *this;
+}
+
+char const * Form::ExecNotSignedException::what(void) const throw()
+{
+	return "Form: cannot execute a form which is not signed";
 }

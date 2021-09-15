@@ -6,7 +6,7 @@ using std::ostream;
 
 Form::Form(string const &name, unsigned execGrade, unsigned signGrade)
 	throw(GradeTooLowException, GradeTooHighException)
-	: _name(name), _execGrade(execGrade), _signGrade(signGrade)
+	: _name(name), _isSigned(false), _execGrade(execGrade), _signGrade(signGrade)
 {
 	_validateGradeOrThrow(_execGrade);
 	_validateGradeOrThrow(_signGrade);

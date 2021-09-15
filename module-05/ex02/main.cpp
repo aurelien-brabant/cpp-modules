@@ -69,8 +69,9 @@ int main(void)
 
 	jjq.executeForm(ppf);
 
-
 	weakBureaucrat.executeForm(ppf); // Should give an error: grade of weakBureaucrat too low.
+
+	jjq.executeForm(ppfBis); // Should give an error: form hasn't been signed yet.
 
 	return 0;
 }
