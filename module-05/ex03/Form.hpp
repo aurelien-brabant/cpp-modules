@@ -49,7 +49,7 @@ class Form
 		Form(std::string const & name = "unnamed", unsigned execGrade = 1, unsigned signGrade = 1)
 			throw(GradeTooLowException, GradeTooHighException);
 		Form(Form const & rhs);
-		~Form(void);
+		virtual ~Form(void);
 		
 		Form & operator=(Form const & rhs);
 
