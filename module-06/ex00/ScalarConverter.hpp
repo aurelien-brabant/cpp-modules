@@ -4,13 +4,11 @@
 
 class ScalarConverter
 {
-	bool isFloat(std::string const & literal) const;
-	bool isInt(std::string const & literal) const; 
-	bool isChar(std::string const & literal) const;
-	//bool isDouble(std::string const & literal) const;
+	bool isPseudoFloat(std::string const & s) const;
+	bool isPseudoDouble(std::string const &s) const;
 
 	public:
-		enum ScalarType { UNIDENTIFIED_LITERAL = -1, CHAR = 0, INT, FLOAT, DOUBLE, TOTAL };
+		enum ScalarType { UNDEF_LIT = -1, CHAR_LIT = 0, INT_LIT, FLOAT_LIT, DOUBLE_LIT, FLOAT_PLIT, DOUBLE_PLIT, TOTAL_LIT };
 
 		ScalarConverter(void);
 		ScalarConverter(ScalarConverter const & rhs);
@@ -18,6 +16,11 @@ class ScalarConverter
 		ScalarConverter & operator=(ScalarConverter const & rhs);
 
 		ScalarType detectType(std::string const & literal) const;
+		
+		void printConversion(char c) const;
+		void printConversion(int i) const;
+		void printConversion(double d) const;
+		void printConversion(float f) const;
 };
 
 #endif

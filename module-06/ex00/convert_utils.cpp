@@ -1,12 +1,13 @@
 #include <string>
 #include <cmath>
+#include <iostream>
 
 using std::string;
 
 // My stod implementation, as C++11 conversion utilities are not allowed since
 // we're restricted to C++98's features.
 
-double stod(string const & s)
+double ft_stod(string const & s)
 {
 	double d = 0.0;
 	int sign = 1;
@@ -31,4 +32,19 @@ double stod(string const & s)
 	}
 
 	return d * sign;
+}
+
+float ft_stof(string const & s)
+{
+	string trimmed(s);
+	size_t i = string::npos;
+
+	if ((i = s.find('f')) != string::npos) {
+		if (i != s.size() - 1) {
+			return 0.0f;
+		}
+		trimmed.erase(i, 1);
+	}
+
+	return ft_stod(trimmed);
 }

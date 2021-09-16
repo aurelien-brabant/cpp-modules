@@ -1,11 +1,13 @@
 #include <iostream>
 #include "ScalarConverter.hpp"
 #include <string>
+#include <cstdlib>
 
 using std::cerr;
 using std::cout;
 
-double stod(std::string const & s);
+double ft_stod(std::string const & s);
+float ft_stof(std::string const & s);
 
 int main(int argc, char **argv)
 {
@@ -14,11 +16,43 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	(void)argv;
+	union {
+		double	d;
+		float	f;
+		char	c;
+		int		i;
+	} litval;
 
-	//ScalarConverter scalcv;
+	ScalarConverter scalcv;
 
-	//cout << scalcv.detectType(argv[1]) << "\n";
+	ScalarConverter::ScalarType type = scalcv.detectType(argv[1]);
 
-	cout << stod("-54345.45") << "\n";
+	switch (type)
+	{
+		case ScalarConverter::CHAR_LIT:
+			litval.c = argv[1][0];
+			scalcv.printConversion(litval.c);
+			break ;
+
+		case ScalarConverter::INT_LIT:
+			litval.i = atoi(argv[1]);
+			scalcv.printConversion(litval.i);
+			break ;
+
+		case ScalarConverter::FLOAT_LIT:
+			litval.f = ft_stof(argv[1]);
+			scalcv.printConversion(litval.f);
+			break ;
+
+		case ScalarConverter::DOUBLE_LIT:
+			litval.d = ft_stod(argv[1]);
+			scalcv.printConversion(litval.d);
+			break ;
+
+		default:
+			cerr << "Error: unknown literal\n";
+			break ; // just in CASE lol
+	}
+
+	return 0;
 }

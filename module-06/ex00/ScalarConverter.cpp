@@ -1,7 +1,44 @@
 #include <cctype>
+#include <iostream>
+#include <cmath>
+#include <iomanip>
 #include "ScalarConverter.hpp"
 
 using std::string;
+using std::cout;
+using std::left; using std::setw;
+
+static std::ostream & printFloat(std::ostream & os, float f)
+{
+	os << f;
+	if (f == roundf(f)) {
+		os << ".0";
+	}
+	os << "f";
+	
+	return os;
+}
+
+static std::ostream & printDouble(std::ostream & os, float f)
+{
+	os << f;
+	if (f == roundf(f)) {
+		os << ".0";
+	}
+	
+	return os;
+}
+
+static std::ostream & printChar(std::ostream & os, char c)
+{
+	if (isprint(c)) {
+		os << "'" << c << "'";
+	} else {
+		os << "Non displayable";
+	}
+	
+	return os;
+}
 
 ScalarConverter::ScalarConverter(void)
 {
@@ -19,47 +56,24 @@ ScalarConverter & ScalarConverter::operator=(ScalarConverter const & rhs)
 	return *this;
 }
 
-bool ScalarConverter::isChar(std::string const & literal) const
+// Detect pseudo-literals
+
+bool ScalarConverter::isPseudoFloat(string const & s) const
 {
-	return literal.size() == 1 && !isdigit(literal[0]);
+	return (
+		s == "nanf" ||
+		s == "+inff" ||
+		s == "-inff"
+	);
 }
 
-bool ScalarConverter::isInt(std::string const & literal) const
+bool ScalarConverter::isPseudoDouble(string const & s) const
 {
-	for (size_t i = 0; i != literal.size(); ++i) {
-		if (!isdigit(literal[i])) {
-			return false;
-		}
-	}
-	
-	return true;
-}
-
-bool ScalarConverter::isFloat(string const & literal) const
-{
-	bool pointFlag = false;
-
-	// accepted pseudo literals
-	if (literal == "-inff" || literal == "+inff" || literal == "nanf") {
-		return true;
-	}
-
-	// for float, 'f' must always be the last character
-	if (literal[literal.size() - 1] != 'f') {
-		return false;
-	}
-
-	for (size_t i = 0; i != literal.size() - 1; ++i) {
-		if (!isdigit(literal[i])) {
-			if (literal[i] == '.' && !pointFlag && (i != 0 || i != literal.size() - 1)) {
-				pointFlag = true;
-				continue ;
-			}
-			return false;
-		}
-	}
-	
-	return true;
+	return (
+		s == "nan" ||
+		s == "+inf" ||
+		s == "-inf"
+	);
 }
 
 ScalarConverter::ScalarType ScalarConverter::detectType(string const & literal) const
@@ -67,8 +81,11 @@ ScalarConverter::ScalarType ScalarConverter::detectType(string const & literal) 
 	bool floatingPoint = false;
 
 	if (literal.size() == 1 && !isdigit(literal[0])) {
-		return CHAR;	
+		return CHAR_LIT;
 	}
+
+	if (isPseudoDouble(literal)) return DOUBLE_PLIT;
+	if (isPseudoFloat(literal)) return FLOAT_PLIT;
 
 	for (size_t i = 0; i != literal.size(); ++i) {
 		if (!isdigit(literal[i])) {
@@ -76,15 +93,79 @@ ScalarConverter::ScalarType ScalarConverter::detectType(string const & literal) 
 				continue ;
 			}
 			else if (literal[i] == 'f' && i == literal.size() - 1) {
-				return FLOAT;
+				return FLOAT_LIT;
 			}
 			else if (literal[i] == '.' && !floatingPoint && (i != 0 && i != literal.size() - 1))	{
 				floatingPoint = true;
 				continue ;
 			}
-			return UNIDENTIFIED_LITERAL;
+			return UNDEF_LIT;
 		}
 	}
 	
-	return floatingPoint ? DOUBLE : INT;
+	return floatingPoint ? DOUBLE_LIT : INT_LIT;
+}
+
+
+void ScalarConverter::printConversion(char c) const
+{
+	cout << left;
+
+	cout << setw(10) << "* char: ";
+	printChar(cout, c) << "\n";
+
+	cout << setw(10) << "int: " << static_cast<int>(c) << "\n";
+
+	cout << setw(10) << "float: ";
+	printFloat(cout, static_cast<float>(c)) << "\n";
+
+	cout << setw(10) << "double: ";
+	printDouble(cout, static_cast<double>(c)) << "\n";
+}
+
+void ScalarConverter::printConversion(float f) const
+{
+	cout << left;
+	cout << setw(10) << "char: ";
+	printChar(cout, static_cast<char>(f)) << "\n";
+	
+	cout << setw(10) << "int: " << static_cast<int>(f) << "\n";
+
+	cout << setw(10) << "* float: ";
+	printFloat(cout, f) << "\n";
+
+	cout << setw(10) << "double: ";
+	printDouble(cout, static_cast<double>(f)) << "\n";
+}
+
+void ScalarConverter::printConversion(int i) const
+{
+	cout << left;
+
+	cout << setw(10) << "char: ";
+	printChar(cout, static_cast<char>(i)) << "\n";
+	
+	cout << setw(10) << "* int: " << i << "\n";
+
+	cout << setw(10) << "float: ";
+	printFloat(cout, static_cast<float>(i)) << "\n";
+
+	cout << setw(10) << "double: ";
+	printDouble(cout, static_cast<double>(i)) << "\n";
+}
+
+void ScalarConverter::printConversion(double d) const
+{
+	cout << left;
+
+	cout << setw(10) << "char: ";
+	printChar(cout, static_cast<char>(d)) << "\n";
+	
+	cout << setw(10) << "int: " << static_cast<int>(d) << "\n";
+
+	cout << setw(10) << "float: ";
+	printFloat(cout, static_cast<float>(d)) << "\n";
+
+	cout << setw(10) << "* double: ";
+	printDouble(cout, d) << "\n";
 }
