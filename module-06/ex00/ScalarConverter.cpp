@@ -169,3 +169,16 @@ void ScalarConverter::printConversion(double d) const
 	cout << setw(10) << "* double: ";
 	printDouble(cout, d) << "\n";
 }
+
+void ScalarConverter::printPseudoConversion(std::string const & pseudo_literal, ScalarType type)
+{
+	cout << left;
+
+	cout << setw(10) << "char: " << "impossible\n";
+
+	cout << setw(10) << "int: " << "impossible\n";
+
+	cout << setw(10) << ((type == FLOAT_PLIT ? string("* ") : string("")) + "float: ") << (type == DOUBLE_PLIT ? (pseudo_literal + "f") : pseudo_literal) << "\n";
+	
+	cout << setw(10) << ((type == DOUBLE_PLIT ? string("* ") : string()) + "double: ") << (type == FLOAT_PLIT ? (string(pseudo_literal).erase(pseudo_literal.size() - 1, 1)) : pseudo_literal) << "\n";
+}

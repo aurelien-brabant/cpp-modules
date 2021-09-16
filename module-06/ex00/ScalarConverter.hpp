@@ -21,6 +21,7 @@ class ScalarConverter
 		void printConversion(int i) const;
 		void printConversion(double d) const;
 		void printConversion(float f) const;
+		void printPseudoConversion(std::string const & pseudo_literal, ScalarType type);
 };
 
 #endif

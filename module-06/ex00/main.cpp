@@ -49,6 +49,12 @@ int main(int argc, char **argv)
 			scalcv.printConversion(litval.d);
 			break ;
 
+		case ScalarConverter::FLOAT_PLIT:
+
+		case ScalarConverter::DOUBLE_PLIT:
+			scalcv.printPseudoConversion(argv[1], type);
+			break ;
+
 		default:
 			cerr << "Error: unknown literal\n";
 			break ; // just in CASE lol
