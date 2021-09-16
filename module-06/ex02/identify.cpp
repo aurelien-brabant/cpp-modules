@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <stdexcept>
 #include "identify.hpp"
 
 using std::cout;
@@ -13,7 +14,7 @@ Base * generate(void)
 {
 	static size_t i = 0;
 
-	srand(time(0) + i++);
+	srand(time(0) - i++);
 
 	switch (rand() % 3) {
 		case 0:
@@ -29,18 +30,40 @@ Base * generate(void)
 
 void identify(Base * p)
 {
-	union {
-		A *a;
-		B *b;
-		C *c;
-	} trueClass;
+	cout << "\033[0;33m";
+	
+	if (dynamic_cast<A *>(p)) cout << "A";
 
-	trueClass.a = dynamic_cast<A *>(p);
-	if (trueClass.a) cout << "A";
+	else if (dynamic_cast<B *>(p)) cout << "B";
 
-	trueClass.b = dynamic_cast<B *>(p);
-	if (trueClass.b) cout << "B";
+	else if (dynamic_cast<C *>(p)) cout << "C";
 
-	trueClass.c = dynamic_cast<C *>(p);
-	if (trueClass.c) cout << "C";
+	cout << "\033[0m";
+}
+
+void identify(Base & p)
+{
+	// if no exception is caught, it means dynamic_cast was successful. In this case, print the correct class name
+	// and return.
+	cout << "\033[0;34m";
+
+	try {
+		(void) dynamic_cast<A &>(p);
+		cout << "A";
+		return ;
+	} catch (std::bad_cast) {};
+
+	try {
+		(void) dynamic_cast<B &>(p);
+		cout << "B";
+		return ;
+	} catch (std::bad_cast) {};
+
+	try {
+		(void) dynamic_cast<C &>(p);
+		cout << "C";
+		return ;
+	} catch (std::bad_cast) {};
+
+	cout << "\033[0m";
 }
