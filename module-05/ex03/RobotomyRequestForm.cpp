@@ -26,7 +26,9 @@ RobotomyRequestForm & RobotomyRequestForm::operator=(RobotomyRequestForm const &
 
 void RobotomyRequestForm::executeAction(void) const
 {
-	srand(time(0)); // use a different seed each time for pseudo-random
+	static int i = 0;
+
+	srand(time(0) - ++i); // use a different seed each time for pseudo-random
 	
 	if (rand() % 2) {
 		cout << "RIZZZZZ... " << _target << " robotomized successfully\n";
