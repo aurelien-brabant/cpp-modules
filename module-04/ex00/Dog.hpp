@@ -4,8 +4,6 @@
 
 class Dog: public Animal
 {
-    Brain const* brain;
-
     public:
         Dog(void);
         Dog(Dog const& rhs);
