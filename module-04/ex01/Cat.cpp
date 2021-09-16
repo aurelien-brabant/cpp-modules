@@ -45,10 +45,3 @@ void Cat::makeSound(void) const
 {
     cout << "Meoooowwwwwww!";
 }
-
-void Cat::meditate(void)
-{
-    for (size_t i = 0; i != Brain::idea_nb; ++i) {
-        brain->ideas[i] = "";
-    }
-}

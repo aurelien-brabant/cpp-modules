@@ -13,11 +13,6 @@ class Cat: public Animal
         ~Cat();
 
         void makeSound(void) const;
-
-        // Cat specific. Allow the given cat to empty its mind, i.e to set all its ideas
-        // to the empty string.
-        // A const cat has a fixed mind, and can't meditate :(
-        void meditate(void);
 };
 
 #endif
