@@ -1,9 +1,11 @@
 #include <iostream>
 #include <stdexcept>
+#include <string>
 #include "Array.hpp"
 
 using std::cout; using std::cerr;
 using std::exception;
+using std::string;
 
 int main(void)
 {
@@ -28,6 +30,17 @@ int main(void)
 	for (int * it = ai.begin(); it != ai.end(); ++it) {
 		cout << *it << "\n";
 	}
+
+	Array<string> as(2);
+
+	as[0] = "Hello, ";
+	as[1] = "World!";
+
+	for (size_t i = 0; i != as.size(); ++i) {
+		cout << as[i];
+	}
+
+	cout << "\n";
 
 	return 0;
 }
