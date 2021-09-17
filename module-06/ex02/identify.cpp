@@ -44,7 +44,6 @@ void identify(Base * p)
 void identify(Base & p)
 {
 	// if no exception is caught, it means dynamic_cast was successful. In this case, print the correct class name
-	// and return.
 	cout << "\033[0;34m";
 
 	try {
