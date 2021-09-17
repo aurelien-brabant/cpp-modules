@@ -23,6 +23,7 @@ class Form
 			public:
 				GradeTooHighException(void);
 				GradeTooHighException(GradeTooHighException const & rhs);
+				~GradeTooHighException(void) throw();
 				
 				GradeTooHighException & operator=(GradeTooHighException const & rhs);
 				const char *what() const throw();
@@ -33,6 +34,7 @@ class Form
 			public:
 				GradeTooLowException(void);
 				GradeTooLowException(GradeTooLowException const & rhs);
+				~GradeTooLowException(void) throw();
 				
 				GradeTooLowException & operator=(GradeTooLowException const & rhs);
 				const char *what() const throw();
@@ -43,6 +45,7 @@ class Form
 			public:
 				ExecNotSignedException(void);
 				ExecNotSignedException(ExecNotSignedException const & rhs);
+				~ExecNotSignedException(void) throw();
 				
 				ExecNotSignedException & operator=(ExecNotSignedException const & rhs);
 				const char *what() const throw();

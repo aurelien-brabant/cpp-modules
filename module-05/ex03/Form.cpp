@@ -99,6 +99,10 @@ Form::GradeTooLowException::GradeTooLowException(GradeTooLowException const & rh
 	(void)rhs;
 }
 
+Form::GradeTooLowException::~GradeTooLowException(void) throw()
+{
+}
+
 Form::GradeTooLowException & Form::GradeTooLowException::operator=(GradeTooLowException const & rhs)
 {
 	(void)rhs;
@@ -121,6 +125,10 @@ Form::GradeTooHighException::GradeTooHighException(GradeTooHighException const &
 	(void)rhs;
 }
 
+Form::GradeTooHighException::~GradeTooHighException(void) throw()
+{
+}
+
 Form::GradeTooHighException & Form::GradeTooHighException::operator=(GradeTooHighException const & rhs)
 {
 	(void)rhs;
@@ -141,6 +149,10 @@ Form::ExecNotSignedException::ExecNotSignedException(void)
 Form::ExecNotSignedException::ExecNotSignedException(ExecNotSignedException const & rhs)
 {
 	(void)rhs;
+}
+
+Form::ExecNotSignedException::~ExecNotSignedException(void) throw()
+{
 }
 
 Form::ExecNotSignedException & Form::ExecNotSignedException::operator=(ExecNotSignedException const & rhs)

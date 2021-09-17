@@ -21,6 +21,7 @@ class Bureaucrat
 			public:
 				GradeTooHighException(void);
 				GradeTooHighException(GradeTooHighException const & rhs);
+				~GradeTooHighException(void) throw();
 				
 				GradeTooHighException & operator=(GradeTooHighException const & rhs);
 				const char *what() const throw();
@@ -31,6 +32,7 @@ class Bureaucrat
 			public:
 				GradeTooLowException(void);
 				GradeTooLowException(GradeTooLowException const & rhs);
+				~GradeTooLowException(void) throw();
 				
 				GradeTooLowException & operator=(GradeTooLowException const & rhs);
 				const char *what() const throw();

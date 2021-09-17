@@ -87,6 +87,10 @@ Form::GradeTooLowException::GradeTooLowException(GradeTooLowException const & rh
 	(void)rhs;
 }
 
+Form::GradeTooLowException::~GradeTooLowException(void) throw()
+{
+}
+
 Form::GradeTooLowException & Form::GradeTooLowException::operator=(GradeTooLowException const & rhs)
 {
 	(void)rhs;
@@ -107,6 +111,10 @@ Form::GradeTooHighException::GradeTooHighException(void)
 Form::GradeTooHighException::GradeTooHighException(GradeTooHighException const & rhs)
 {
 	(void)rhs;
+}
+
+Form::GradeTooHighException::~GradeTooHighException(void) throw()
+{
 }
 
 Form::GradeTooHighException & Form::GradeTooHighException::operator=(GradeTooHighException const & rhs)
