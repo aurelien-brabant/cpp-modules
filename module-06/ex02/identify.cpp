@@ -49,17 +49,17 @@ void identify(Base & p)
 	try {
 		(void) dynamic_cast<A &>(p);
 		cout << "A";
-	} catch (std::bad_cast) {};
+	} catch (std::exception & e) {};
 
 	try {
 		(void) dynamic_cast<B &>(p);
 		cout << "B";
-	} catch (std::bad_cast) {};
+	} catch (std::exception & e) {};
 
 	try {
 		(void) dynamic_cast<C &>(p);
 		cout << "C";
-	} catch (std::bad_cast) {};
+	} catch (std::exception & e) {};
 
 	cout << "\033[0m";
 }

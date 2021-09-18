@@ -1,7 +1,7 @@
+#include "Array.hpp"
 #include <iostream>
 #include <stdexcept>
 #include <string>
-#include "Array.hpp"
 
 using std::cout; using std::cerr;
 using std::exception;
@@ -9,6 +9,10 @@ using std::string;
 
 int main(void)
 {
+	Array<bool> ab;
+
+	cout << "ab's size: " << ab.size() << "\n";
+
 	Array<int> ai(5);
 
 	for (int * it = ai.begin(); it != ai.end(); ++it) {

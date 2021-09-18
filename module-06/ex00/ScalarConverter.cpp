@@ -92,7 +92,7 @@ ScalarConverter::ScalarType ScalarConverter::detectType(string const & literal) 
 			if ((literal[i] == '-' || literal[i] == '+') && i == 0) {
 				continue ;
 			}
-			else if (literal[i] == 'f' && i == literal.size() - 1) {
+			else if (literal[i] == 'f' && i == literal.size() - 1 && isdigit(literal[i - 1])) {
 				return FLOAT_LIT;
 			}
 			else if (literal[i] == '.' && !floatingPoint && (i != 0 && i != literal.size() - 1))	{
