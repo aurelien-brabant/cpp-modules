@@ -28,12 +28,10 @@ int main(int argc, char **argv)
 	}
 	
 	int n = atoi(argv[1]);
-	/*
 	if (n < 2) {
 		cerr << "Please provide _at least_ 2 numbers\n";
 		return EXIT_FAILURE;
 	}
-	*/
 
 	int max = argc == 3 ? atoi(argv[2]) : 42;
 

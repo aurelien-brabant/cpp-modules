@@ -48,6 +48,10 @@ void Span::append(vector<int>::const_iterator begin, vector<int>::const_iterator
 
 size_t Span::longestSpan(void) const
 {
+	if (_data.size() < 2) {
+		return 0;
+	}
+
 	vector<int> sorted(_data);
 	std::sort(sorted.begin(), sorted.end());
 
