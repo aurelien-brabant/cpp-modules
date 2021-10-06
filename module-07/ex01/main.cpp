@@ -19,12 +19,15 @@ void printFooX(Foo & f)
 	cout << f.getX() << "\n";
 }
 
+template <typename T>
+void print(const T& el) { cout << el << "\n"; }
+
 void printInt(int & i)
 {
 	cout << i << "\n";
 }
 
-void pow2(int &exp)
+void pow2(int& exp)
 {
 	exp = pow(2, exp);
 }
@@ -37,7 +40,7 @@ int main(void)
 	size_t iaSize = sizeof (ia) / sizeof (int);
 
 	::iter(ia, iaSize, &pow2);
-	::iter(ia, iaSize, &printInt);
+	::iter(ia, iaSize, &print);
 
 	cout << "\nTest with array of classes\n\n";
 
