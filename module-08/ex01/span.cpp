@@ -56,10 +56,21 @@ size_t Span::longestSpan(void) const
 
 size_t Span::shortestSpan(void) const
 {
-	vector<int> sorted(_data);
-	std::sort(sorted.begin(), sorted.end());
+	size_t shortest = _data.max_size();
+	
+	for (vector<int>::const_iterator cit = _data.begin(); cit != _data.end(); ++cit) {
+		for (vector<int>::const_iterator cit2 = cit + 1; cit2 != _data.end(); ++cit2) {
+			size_t sub = abs(*cit - *cit2);
+			if (sub == 0) {
+				return 0; /* if there are duplicates, then 0 is automatically the minimal span */
+			}
+			if (sub < shortest) {
+				shortest = sub;
+			}
+		}
+	}
 
-	return abs(sorted[1] - sorted[0]);	
+	return shortest;
 }
 
 vector<int> const & Span::getInternalData(void) const
