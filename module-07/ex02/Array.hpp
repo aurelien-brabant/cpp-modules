@@ -35,9 +35,9 @@ class Array
 			return *this;
 		}
 
-		T & operator[](unsigned int i) throw(std::out_of_range)
+		T& operator[](unsigned int i) throw(std::out_of_range)
 		{
-			if (i < 0 || i >= size()) {
+			if (i >= size()) {
 				throw std::out_of_range("Index out of the range of the array");
 			}
 
